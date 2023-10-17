@@ -1,7 +1,8 @@
 import { FC, ReactNode } from 'react'
 import { cva, type VariantProps } from "class-variance-authority";
+import locatioanName from '../../../utils/location';
 
-const modalForm = cva("relative w-full max-h-full", {
+const modalForm = cva("relative w-full overflow-auto max-h-full p-4", {
 	variants: {
 		size: {
 			small: [
@@ -51,9 +52,9 @@ const ModalForm: FC<ModalProps> = ({
                 {/* Modal content */}
                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 {/* Modal header */}
-                <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <div className="flex items-start overflow-auto justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {title}
+                        {title} {locatioanName().pathName}
                     </h3>
                     <button
                         type="button"

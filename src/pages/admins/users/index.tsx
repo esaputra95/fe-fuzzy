@@ -1,59 +1,73 @@
 import Table from './Table'
 import TablePaging from './TablePaging'
-import Spinner from '../../../components/ui/Spinner'
-import { useUser } from '../../../hooks/fetch/useUser'
+import { useUser } from './../../../hooks/fetch/useUser'
 import ModalForm from '../../../components/ui/modal/ModalForm'
 import FormUser from './form'
-import { modalFormState } from '../../../utils/modalFormState'
-import { useEffect } from 'react'
 import { Button } from '../../../components/input'
+import locatioanName from '../../../utils/location'
+import ModalConfirm from '../../../components/ui/modal/ModalConfirm'
 
 const UserPage = () => {
     const { 
-        data, 
-        isLoading,
+        dataUser, 
+        isFetching,
+        errors,
+        isLoadingMutate,
         register,
         onSubmit,
-        handleSubmit
+        handleSubmit,
+        modalForm,
+        setModalForm,
+        onDelete,
+        modalConfirm,
+        onUpdate,
+        onCancel,
+        onDetail,
+        idDetail,
+        page
     } = useUser()
-
-    const { state, setModal} = modalFormState()
-    
-    useEffect(()=> {
-        setModal({
-            ...state,
-            label: 'Form Add User Data'
-        })
-    }, [])
-    
-
-    const onDelete = (id:number) => {
-        console.log(id);
-    }
 
     return (
         <div className='w-full'>
-            <ModalForm visible={state.visible} onClose={()=>setModal({...state, visible:false})} title={state.label} size="medium">
-                <FormUser handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} />
+            <ModalConfirm data={modalConfirm.modalConfirm}  />
+            <ModalForm 
+                visible={modalForm.visible}
+                onClose={onCancel}
+                title={modalForm.label}
+                size="medium"
+            >
+                <FormUser
+                    onCancel={onCancel}
+                    isLoading={isLoadingMutate}
+                    errors={errors}
+                    idDetail={idDetail}
+                    handleSubmit={handleSubmit}
+                    register={register}
+                    onSubmit={onSubmit}
+                />
             </ModalForm>
-            <div>
-                <label className='text-lg font-semibold'>User Data List</label>
-            </div>
             <div className='w-full'>
                 <div className='py-4'>
-                    <Button onClick={()=>setModal({...state, visible:true})} >+ User</Button>
+                    <Button 
+                        onClick={()=>setModalForm((state)=> ({...state, visible:true}))} 
+                    >
+                        + {locatioanName().pathName}
+                    </Button>
                 </div>
-                {
-                    isLoading ? 
-                    <Spinner /> :
-                    <>
-                        <Table
-                            data={data}
-                            onDelete={()=>onDelete}
-                        />
-                        <TablePaging />
-                    </>
-                }
+                <Table
+                    data={dataUser?.users ?? []}
+                    isFetching={isFetching}
+                    page={page.page}
+                    limit={page.limit}
+                    onDelete={onDelete}
+                    onUpdate={onUpdate}
+                    onDetail={onDetail}
+                />
+                <TablePaging
+                    page={page.page}
+                    total={page.total}
+                    handlePage={page.handlePage}
+                />
             </div>
         </div>
     )

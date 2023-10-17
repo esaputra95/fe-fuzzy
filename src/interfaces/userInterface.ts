@@ -1,44 +1,35 @@
-import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 
-interface Geolocation {
-    lat: string;
-    long: string;
-}
-  
-interface Address {
-    geolocation: Geolocation;
-    city: string;
-    street: string;
-    number: number;
-    zipcode: string;
-}
-  
-interface Name {
-    firstname: string;
-    lastname: string;
-}
-  
 export interface UserInterface {
-    address?: Address;
-    id: number;
-    email: string;
+    id?: number | null;
     username: string;
+    name: string;
     password: string;
-    name?: Name;
-    phone: string;
-    __v?: number;
+    role?: string;
 }
 
-export type UserInterfaceForm = Omit<UserInterface, 'id' | '__v' | 'name' | 'address' >
-
-export type UserSearchType = {
-    username?: string;
-    email?: string
+export interface UserSearchInterface {
+    name?: string;
+    code?: string
 }
 
 export type UserFormProps = {
-	handleSubmit: UseFormHandleSubmit<UserInterfaceForm>
-	onSubmit: (data:UserInterfaceForm) => void;
-	register: UseFormRegister<UserInterfaceForm>
+	handleSubmit: UseFormHandleSubmit<UserInterface>
+	onSubmit: (data:UserInterface) => void;
+	register: UseFormRegister<UserInterface>;
+    onCancel: () => void;
+    errors: FieldErrors<UserInterface>;
+    isLoading?: boolean;
+    idDetail?: number | null
 }
+
+interface Info {
+    page: number;
+    limit: number;
+    total: number;
+  }
   
+export interface ClassDataTypeInterface {
+    User: UserInterface[];
+    info: Info;
+  }

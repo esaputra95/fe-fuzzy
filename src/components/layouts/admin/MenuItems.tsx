@@ -1,18 +1,31 @@
-import { BiHomeCircle, BiSolidData } from "react-icons/bi";
-
-const MenuItems = [
+export const MasterMenu = [
     {
-        label: 'Dashboard',
-        icon: <BiHomeCircle className='h-6 w-6' />,
-        path: 'dashboard',
-        active: false
+        label: 'variable',
+        path: 'variable',
+        active: false,
     },
     {
-        label: 'User',
-        icon: <BiSolidData className='h-6 w-6'  />,
-        path: 'user',
-        active: false
-    }
-]
+        label: 'sub-variable',
+        path: 'sub-variable',
+        active: false,
+    },
+    {
+        label: 'indicator',
+        path: 'indicator',
+        active: false,
+    },
+    {
+        label: 'factor',
+        path: 'factor',
+        active: false,
+    },
+];
 
-export default MenuItems
+export const KnowledgeManagement = [
+    {
+        label: 'knowledge-management',
+        path: 'knowledge-management',
+        active: false,
+    },
+    
+]

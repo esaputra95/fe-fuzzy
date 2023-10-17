@@ -1,10 +1,16 @@
+import { useTranslation } from "react-i18next";
 import * as yup from "yup"
 
-const userSchema = yup.object({
-    username: yup.string().required('Username requiered'),
-    password: yup.string().required('Password required'),
-    email: yup.string().required('Password required'),
-    phone: yup.string().required('Password required'),
-});
+const userSchema = () => {
+    const {t} = useTranslation()
+    const schema = yup.object({
+        name: yup.string().required(`${t("name")} ${t("required")}`),
+        username: yup.string().typeError(`${t("price")} ${t("mustNumber")}`).required(`${t("price")} ${t("required")}`),
+        password: yup.string().required()
+    });
 
+    return {
+        schema
+    }
+}
 export default userSchema

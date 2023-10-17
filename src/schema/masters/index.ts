@@ -1,1 +1,6 @@
 export { default as userSchema } from './UserSchema'
+export { default as classTypeSchema } from './classTypeSchema'
+export { default as VariableSchema } from './variableSchema'
+export { default as SubVariableSchema } from './subVariableSchema'
+export { default as FactorSchema } from './factorSchema'
+export { default as IndicatorSchema } from './indicatorSchema'

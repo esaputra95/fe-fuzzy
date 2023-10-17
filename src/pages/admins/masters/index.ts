@@ -1,0 +1,5 @@
+export { default as ClassTypePage } from './classType' 
+export { default as VariablePage } from './variables' 
+export { default as SubVariablePage } from './subVariables' 
+export { default as FactorPage } from './factors' 
+export { default as IndicatorPage } from './Indicators' 
