@@ -34,3 +34,7 @@ export const factorDummy = {
     description: '',
     subVariableId: 0,
 }
+
+export const questionnairesDummy = {
+    name: '',
+}

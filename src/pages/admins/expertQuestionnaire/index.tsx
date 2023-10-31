@@ -35,7 +35,7 @@ const ExpertQuestionnairePage = () => {
                 visible={modalForm.visible}
                 onClose={onCancel}
                 title={modalForm.label}
-                size="large"
+                size="full"
             >
                 <FormExpertQuestionnaire
                     onCancel={onCancel}

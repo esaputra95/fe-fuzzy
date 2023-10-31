@@ -11,7 +11,11 @@ const ExpertQuestionnaireSchema = () => {
         specialty: yup.string().required(`${t("specialty")} ${t("required")}`),
         faculty: yup.string().required(`${t("faculty")} ${t("required")}`),
         university: yup.string().required(`${t("universities")} ${t("required")}`),
-        questionary: yup.array().required('harus disisi')
+        questionary: yup.array().of(
+            yup.object({
+                value: yup.string().required('harus diisi')
+            })
+        ).required('harus di isi')
     });
 
     return {

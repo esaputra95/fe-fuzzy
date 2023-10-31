@@ -10,7 +10,9 @@ import {
     InboxIcon,
     PowerIcon,
 	HomeIcon,
-	DocumentTextIcon
+	DocumentTextIcon,
+	QueueListIcon,
+	ArrowPathIcon
   } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from 'react-i18next';
@@ -98,11 +100,16 @@ const SideBarLayout = () => {
 				</ListItem>
 				<ListItem onClick={()=> handleOnClickMenu('expert-questionnaire')}>
 					<ListItemPrefix>
-						<DocumentTextIcon className="h-5 w-5" />
+						<QueueListIcon className="h-5 w-5" />
 					</ListItemPrefix>
 					{t("expert-questionnaire")}
 				</ListItem>
-					
+				<ListItem onClick={()=> handleOnClickMenu('fuzzy')}>
+					<ListItemPrefix>
+						<ArrowPathIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("fuzzy")}
+				</ListItem>
 				<ListItem selected={selector.menu === 'user' ? true : false} onClick={()=> handleOnClickMenu("user")}>
 					<ListItemPrefix>
 						<UserCircleIcon className="h-5 w-5" />

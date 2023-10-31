@@ -59,6 +59,14 @@ const url = {
         getById: 'expert-questionnaires',
         delete: 'expert-questionnaires',
         form: 'expert-questionnaires/form'
+    },
+    Fuzzy: {
+        get: 'fuzzy',
+        post: 'fuzzy',
+        put: 'fuzzy',
+        getById: 'fuzzy',
+        delete: 'fuzzy',
+        getSelect: 'fuzzy/select'
     }
 };
 

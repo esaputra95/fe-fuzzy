@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 import { cva, type VariantProps } from "class-variance-authority";
 import locatioanName from '../../../utils/location';
 
-const modalForm = cva("relative w-full overflow-auto max-h-full p-4", {
+const modalForm = cva("relative w-full overflow-auto max-h-full ", {
 	variants: {
 		size: {
 			small: [
@@ -14,6 +14,9 @@ const modalForm = cva("relative w-full overflow-auto max-h-full p-4", {
 			large: [
 				"max-w-6xl"
 			],
+            full: [
+                "w-full h-screen"
+            ]
 		},
 	},
 	compoundVariants: [{size: "medium"}],
@@ -45,7 +48,7 @@ const ModalForm: FC<ModalProps> = ({
         id="defaultModal"
         tabIndex={-1}
         aria-hidden="true"
-        className={`${visible ? 'flex' : 'hidden'} fixed top-0 left-0 right-0 z-50 items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full`}
+        className={`${visible ? 'flex' : 'hidden'} fixed top-0 left-0 right-0 z-50 items-center justify-center w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full`}
         >
             <div className='absolute h-screen w-full bg-black opacity-30' />
             <div className={modalForm({ size, className })} {...props}>

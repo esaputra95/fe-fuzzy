@@ -12,6 +12,7 @@ import {
 } from "../pages/admins/masters";
 import KnowledgeManagementPage from "../pages/admins/knowledgeManagement";
 import ExpertQuestionnairePage from "../pages/admins/expertQuestionnaire";
+import FuzzyPage from "../pages/admins/fuzzy";
 const MainRouters = [
     {
         path: '/',
@@ -56,6 +57,10 @@ const MainRouters = [
             {
                 path: 'expert-questionnaire',
                 element: <ExpertQuestionnairePage />
+            },
+            {
+                path: 'fuzzy',
+                element: <FuzzyPage />
             },
             {
                 path: '*', 

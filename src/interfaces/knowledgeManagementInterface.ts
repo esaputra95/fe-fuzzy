@@ -8,12 +8,14 @@ import { FactorInterface } from "./master/factorInterface";
 export interface KnowledgeManagementArrayFormInterface {
     indicatorId?: number | null;
     reference: string;
+    number: number;
 }
 export interface KnowledgeManagementInterface {
     id?: number;
     subVariableId: number;
     factorId: number;
     indicatorId?: number;
+    number?: number;
     reference?: string;
     indicator?: IndicatorInterface;
     indicators?: KnowledgeManagementArrayFormInterface[]

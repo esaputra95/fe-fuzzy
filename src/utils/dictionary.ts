@@ -49,7 +49,8 @@ export const Indonesia = {
     "expert-questionnaire": "Kuesioner Ahli",
     'expert-Lecturer-data': 'Data Dosen Ahli',
     "gender": "Jenis Kelamin",
-    "nik": "NIK"
+    "nik": "NIK /NIP",
+    "fuzzy": "Fuzzy AHP"
 }
 
 export const English = {
@@ -104,5 +105,6 @@ export const English = {
     "indicator": "Indicator",
     "expert-questionnaire": "Expert Questionnaire",
     "gender": "Gender",
-    "nik": "National Identity Number"
+    "nik": "NIK /NIP",
+    "fuzzy": "Fuzzy AHP"
 }

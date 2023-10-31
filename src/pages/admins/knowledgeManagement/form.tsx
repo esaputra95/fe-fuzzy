@@ -31,6 +31,9 @@ const FormKnowledgeManagement: FC<KnowledgeManagementFormProps> = (props) => {
 
     const {t} = useTranslation()
 
+    console.log({errors});
+    
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col space-y-4'>
@@ -64,12 +67,15 @@ const FormKnowledgeManagement: FC<KnowledgeManagementFormProps> = (props) => {
                     />
                 </div>
                 <div className='w-full flex justify-end'>
-                <Button type='button' className='w-32' onClick={()=> appendListFormIndicator({ indicatorId:null, reference:'' })}>+ {t("indicator")}</Button>
+                <Button type='button' className='w-32' onClick={()=> appendListFormIndicator({ indicatorId:null, reference:'', number: 1 })}>+ {t("indicator")}</Button>
                 </div>
                 <table>
                     <thead>
                         <tr>
-                            <th className='flex text-start'>
+                            <th className='text-start w-14'>
+                                No
+                            </th>
+                            <th className='text-start'>
                                 Indikator
                             </th>
                             <th>
@@ -81,6 +87,17 @@ const FormKnowledgeManagement: FC<KnowledgeManagementFormProps> = (props) => {
                             {
                                 listFormIndicator.map((field, index)=> (
                                     <tr key={field.id}>
+                                        <td>
+                                            <InputTextArray 
+                                                errors={errors} 
+                                                readOnly={idDetail?true:false} 
+                                                register={register}
+                                                index={index}
+                                                name='indicators'
+                                                nameObj='number'
+                                                type='number'
+                                            />
+                                        </td>
                                         <td>
                                             <Select
                                                 {...register(`indicators.${index}.indicatorId`)} 

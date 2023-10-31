@@ -19,7 +19,7 @@ export interface ExpertQuestionnaireInterface {
 }
 
 interface ScalaInterface {
-  value?: any
+  value: string
 }
 
 export interface ExpertQuestionnaireSearchInterface {
@@ -57,16 +57,6 @@ export interface DataFormExpertQuestionnaireInterface {
     description: string;
     km: string;
     knowledgeManagement : KnowledgeManagementTableInterface[]
-}
-
-interface SubVariable {
-    id: number;
-    name: string;
-  }
-  
-interface Indicator {
-    id: number;
-    name: string;
 }
 
 type Knowledge = Omit<KnowledgeManagementInterface, 'indicators' >

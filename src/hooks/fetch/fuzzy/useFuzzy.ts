@@ -1,27 +1,40 @@
 import {  useMutation, useQuery } from "@tanstack/react-query"
-import { deleteData, getData, getDataById, getForm, postData } from "../../models/expertQuestionnaire/expertQuestionnaireModel"
+import { deleteData, getData, getDataById, postData } from "../../models/fuzzy/fuzzyModel"
 import { useEffect, useState } from "react"
-import { DataForm, DataFormExpertQuestionnaireInterface, ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface"
+import { FuzzyDataTypeInterface, FuzzyInterface } from "../../../interfaces/fuzzyInterface"
 import { SubmitHandler, useForm } from "react-hook-form"
 import url from "../../../services/url"
 import { yupResolver } from "@hookform/resolvers/yup"
-import ExpertQuestionnaireSchema from "../../../schema/expertQuestionnaireSchema"
 import { AxiosError } from "axios"
 import { modalFormState } from "../../../utils/modalFormState"
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next"
 import { modalConfirmState } from "../../../utils/modalConfirmState"
-import { questionnairesDummy } from '../../../utils/dummy/master'
 import usePage from "../../../utils/pageState"
+import { useSubVariable } from "../master/useSubVariable"
+import { useFactor } from "../master/useFactor"
+import FuzzySchema from "../../../schema/fuzzySchema"
 
-export const useExpertQuestionnaire = () => {
-    const [ query, setQuery ] = useState<ExpertQuestionnaireInterface>()
+export const useFuzzy = () => {
+    const [ query, setQuery ] = useState<FuzzyInterface>()
     const [ idDetail, setIdDetail ] = useState<number | null>()
-    const { factor, expertQuestionnaire } = url
+    const [ selectSubVariable, setSelectSubVariable ] = useState({label:'', value:''})
+    const [ selectFactor, setSelectFactor ] = useState({label:'', value:''})
+    const { Fuzzy } = url
     const { modalForm, setModalForm } = modalFormState()
     const { t } = useTranslation();
     const modalConfirm = modalConfirmState()
     const page = usePage();
+
+    const {
+        optionSubVariable,
+        onSearchSubVariable
+    } = useSubVariable();
+
+    const {
+        optionFactor,
+        onSearchFactor
+    } = useFactor()
     
     useEffect(()=> {
         setModalForm((state)=>({
@@ -34,41 +47,28 @@ export const useExpertQuestionnaire = () => {
         reset,
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
-    } = useForm<ExpertQuestionnaireInterface>({
-        resolver: yupResolver(ExpertQuestionnaireSchema().schema)
+    } = useForm<FuzzyInterface>({
+        resolver: yupResolver(FuzzySchema().schema)
     })
       
-    const {data:dataExpertQuestionnaire, isFetching, refetch} = useQuery({ 
-        queryKey: ['variables'], 
+    const {data:dataFuzzy, isFetching, refetch} = useQuery<FuzzyDataTypeInterface>({ 
+        queryKey: ['fuzzy'], 
         networkMode: 'always',
-        queryFn: async () => await getData(expertQuestionnaire.get, 
-            {
-                ...query, page:page.page
-            }
-        ),
+        queryFn: async () => await getData(Fuzzy.get, query),
         onSuccess(data) {
             page.setTotal(Math.ceil((data?.info?.total  ?? 1)/(data?.info?.limit ?? page.limit)))
         },
     })
 
-    const { data: dataForm } = useQuery<DataForm[] | undefined, AxiosError>({
-        queryKey: ['get-form'],
-        queryFn: async () => getForm(expertQuestionnaire.form),
-        onSuccess: (data) => {
-            console.log({data});
-            
-        }
-    })
-
-
     useEffect(()=> {
         refetch()
-    }, [page.page])
+    }, [query])
 
     const { mutate:mutateById } = useMutation({
-        mutationFn: (id:number) => getDataById(expertQuestionnaire.getById, id),
-        onSuccess:(data:ExpertQuestionnaireInterface)=>{
+        mutationFn: (id:number) => getDataById(Fuzzy.getById, id),
+        onSuccess:(data:FuzzyInterface)=>{
             reset(data)
             setModalForm((state)=>({
                 ...state,
@@ -78,16 +78,13 @@ export const useExpertQuestionnaire = () => {
     })
 
     const { mutate, isLoading:isLoadingMutate } = useMutation({
-        mutationFn: (data:ExpertQuestionnaireInterface)=> postData(expertQuestionnaire.post, data),
+        mutationFn: (data:FuzzyInterface)=> postData(Fuzzy.post, data),
         onSuccess: ()=> {
             setModalForm((state)=>({
                 ...state,
                 visible: false
             }))
             refetch()
-            reset({
-                ...questionnairesDummy
-            })
             toast.success(t("success-save"), {
                 position: toast.POSITION.TOP_CENTER
             });
@@ -103,7 +100,7 @@ export const useExpertQuestionnaire = () => {
     })
 
     const {mutate:mutateDelete} = useMutation({
-        mutationFn: (id:number) => deleteData(expertQuestionnaire.delete, id),
+        mutationFn: (id:number) => deleteData(Fuzzy.delete, id),
         onSuccess: () => {
             modalConfirm.setModalConfirm({
                 ...modalConfirm.modalConfirm,
@@ -123,12 +120,8 @@ export const useExpertQuestionnaire = () => {
         }
     })
 
-    const onSubmit: SubmitHandler<ExpertQuestionnaireInterface> = (data) => {
-        console.log('oke');
-        
-        mutate(data)
-        console.log({data});
-        
+    const onSubmit: SubmitHandler<FuzzyInterface> = (data) => {
+        setQuery(data)
     }
 
     const onDelete = (id: number) => {
@@ -164,9 +157,6 @@ export const useExpertQuestionnaire = () => {
             ...state,
             visible: false
         }))
-        reset({
-            ...questionnairesDummy
-        })
         setIdDetail(null)
     }
 
@@ -175,8 +165,14 @@ export const useExpertQuestionnaire = () => {
         mutateById(id)
     }
 
+    const handleChangeSelect = (event:any, key:keyof FuzzyInterface) => {
+        setValue(key, event.value)
+        if(key==="subVariableId") setSelectSubVariable(event)
+        if(key==="factorId") setSelectFactor(event)
+    };
+
     return {
-        dataExpertQuestionnaire,
+        dataFuzzy,
         isFetching,
         setQuery,
         onSubmit,
@@ -194,6 +190,12 @@ export const useExpertQuestionnaire = () => {
         onDetail,
         idDetail,
         page: page,
-        dataForm,
+        optionSubVariable,
+        onSearchSubVariable,
+        selectSubVariable,
+        handleChangeSelect,
+        optionFactor,
+        onSearchFactor,
+        selectFactor
     }
 }

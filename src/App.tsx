@@ -4,7 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import "./i18n";
 import { ToastContainer } from 'react-toastify';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+          refetchOnWindowFocus: true, // default: true
+        },
+    },
+})
 
 const App = () => {
     return (

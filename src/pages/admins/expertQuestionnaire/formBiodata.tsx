@@ -40,6 +40,14 @@ const FormBiodata: FC<FormDataProps> = (props) => {
             </div>
             <div className='py-2'>
                 <InputText
+                    name='specialty'
+                    register={register}
+                    errors={errors}
+                    label={t("specialty")}
+                />
+            </div>
+            <div className='py-2'>
+                <InputText
                     name='position'
                     register={register}
                     errors={errors}
