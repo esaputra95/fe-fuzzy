@@ -10,9 +10,13 @@ import {
     FactorPage,
     IndicatorPage
 } from "../pages/admins/masters";
-import KnowledgeManagementPage from "../pages/admins/knowledgeManagement";
-import ExpertQuestionnairePage from "../pages/admins/expertQuestionnaire";
-import FuzzyPage from "../pages/admins/fuzzy";
+import { 
+    RankingPage,
+    FuzzyPage,
+    ExpertQuestionnairePage,
+    KnowledgeManagementPage
+} from "../pages/admins/fuzzys";
+import { KMeansPage } from "../pages/admins/kmeans";
 const MainRouters = [
     {
         path: '/',
@@ -61,6 +65,14 @@ const MainRouters = [
             {
                 path: 'fuzzy',
                 element: <FuzzyPage />
+            },
+            {
+                path: 'ranking',
+                element: <RankingPage />
+            },
+            {
+                path: 'kmeans',
+                element: <KMeansPage />
             },
             {
                 path: '*', 

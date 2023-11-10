@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { Button } from '../../../components/input';
-import { FuzzyFormProps } from '../../../interfaces/fuzzyInterface';
-import Spinner from '../../../components/ui/Spinner';
+import { Button } from '../../../../components/input';
+import { FuzzyFormProps } from '../../../../interfaces/fuzzyInterface';
+import Spinner from '../../../../components/ui/Spinner';
 import Select from 'react-tailwindcss-select';
 
 const FormFuzzy: FC<FuzzyFormProps> = (props) => {

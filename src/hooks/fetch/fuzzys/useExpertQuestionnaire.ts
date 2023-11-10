@@ -1,5 +1,5 @@
 import {  useMutation, useQuery } from "@tanstack/react-query"
-import { deleteData, getData, getDataById, getForm, postData } from "../../models/expertQuestionnaire/expertQuestionnaireModel"
+import { deleteData, getData, getDataById, getForm, postData } from "../../models/fuzzy/expertQuestionnaireModel"
 import { useEffect, useState } from "react"
 import { DataForm, DataFormExpertQuestionnaireInterface, ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface"
 import { SubmitHandler, useForm } from "react-hook-form"

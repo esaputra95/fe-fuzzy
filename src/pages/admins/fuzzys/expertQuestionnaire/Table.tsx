@@ -1,15 +1,17 @@
-import { BsEyeFill, BsFillTrashFill } from "react-icons/bs";
+import { BsEyeFill, BsFillTrashFill, BsPencilFill } from "react-icons/bs";
 import { FC } from "react";
+import { FactorInterface } from "../../../../interfaces/master/factorInterface";
 import { useTranslation } from "react-i18next";
-import Skeleton from "../../../components/ui/Skeleton";
-import { KnowledgeManagementTableInterface } from "../../../interfaces/knowledgeManagementInterface";
+import Skeleton from "../../../../components/ui/Skeleton";
+import { ExpertQuestionnaireInterface } from "../../../../interfaces/expertQuestionnaireInterface";
 
 type tableProps = {
-    data?: KnowledgeManagementTableInterface[],
+    data?: ExpertQuestionnaireInterface[],
     isFetching?: boolean,
     page: number,
     limit: number,
     onDelete:(id:number)=>void,
+    onUpdate:(id:number)=>void,
     onDetail:(id:number)=>void
 }
 
@@ -19,10 +21,12 @@ const header = [
         align: 'left',
         width: 'w-4'
     },
-    { label: 'variable' },
-    { label: 'factor' },
-    { label: 'indicator' },
-    { label: 'reference' },
+    { label: 'name' },
+    { label: 'nik' },
+    { label: 'position' },
+    { label: 'faculty' },
+    { label: 'university' },
+    { label: 'specialty' },
     { 
         label: 'Action',
         width: 'w-16'
@@ -30,11 +34,11 @@ const header = [
 ] 
 
 const Table: FC<tableProps> = (props) => {
-    const { data, isFetching, page, limit, onDelete, onDetail } = props;
+    const { data, isFetching, page, limit, onDelete } = props;
     const { t } = useTranslation()
     let number:number = ((page-1)*limit)
     return (
-        <div className="relative overflow-x-auto max-h-100">
+        <div className="relative overflow-x-auto max-h-96">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -56,21 +60,24 @@ const Table: FC<tableProps> = (props) => {
                                     {(number+index+1)}
                                 </th>
                                 <td className="px-6 py-4">
-                                    {value.subVariables?.name}
+                                    {value.name}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {value.factors?.name}
+                                    {value.nik}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {value.indicators?.name}
+                                    {value.position}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {value.reference}
+                                    {value.faculty}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {value.university}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {value.specialty}
                                 </td>
                                 <td className="px-6 py-4 flex">
-                                    <span title="Detail" className="p-1.5 bg-cyan-50 hover:bg-cyan-100 hover:cursor-pointer rounded-full" onClick={()=>onDetail(value.id ?? 0)}>
-                                        <BsEyeFill className='text-cyan-600' />
-                                    </span>
                                     <span title={t("delete")} className="p-1.5 bg-red-50 hover:bg-red-100 hover:cursor-pointer rounded-full" onClick={()=>onDelete(value.id ?? 0)}>
                                         <BsFillTrashFill className="text-red-600" />
                                     </span>

@@ -77,28 +77,6 @@ export const useFuzzy = () => {
         },
     })
 
-    const { mutate, isLoading:isLoadingMutate } = useMutation({
-        mutationFn: (data:FuzzyInterface)=> postData(Fuzzy.post, data),
-        onSuccess: ()=> {
-            setModalForm((state)=>({
-                ...state,
-                visible: false
-            }))
-            refetch()
-            toast.success(t("success-save"), {
-                position: toast.POSITION.TOP_CENTER
-            });
-            
-        },
-        onError: (errors) => {
-            const err = errors as AxiosError
-            toast.success(`${err}`, {
-                position: toast.POSITION.TOP_CENTER
-            });
-            
-        }
-    })
-
     const {mutate:mutateDelete} = useMutation({
         mutationFn: (id:number) => deleteData(Fuzzy.delete, id),
         onSuccess: () => {
@@ -176,7 +154,6 @@ export const useFuzzy = () => {
         isFetching,
         setQuery,
         onSubmit,
-        isLoadingMutate,
         errors,
         reset,
         register,

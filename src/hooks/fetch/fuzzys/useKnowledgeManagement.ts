@@ -1,5 +1,5 @@
 import {  useMutation, useQuery } from "@tanstack/react-query"
-import { deleteData, getData, getDataById, postData } from "../../models/knowledgeManagement/knowledgeManagement"
+import { deleteData, getData, getDataById, postData } from "../../models/fuzzy/knowledgeManagement"
 import { ChangeEvent, useEffect, useState } from "react"
 import { DataKnowledgeManagementInterface, KnowledgeManagementArrayFormInterface, KnowledgeManagementInterface } from "../../../interfaces/knowledgeManagementInterface"
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form"
@@ -193,6 +193,7 @@ export const useKnowledgeManagement = () => {
         setQuerySelect(state => ({...state, name: event.target.value}))
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChangeSelect = (name:keyof KnowledgeManagementInterface, event:any) => {
         setValue(name, event.value)
         if(name==="subVariableId") setSelectOption( state=>({ ...state, 'subVariable':event }) )
@@ -202,6 +203,7 @@ export const useKnowledgeManagement = () => {
     const handleChangeSelectArray = (
         name:keyof KnowledgeManagementArrayFormInterface, 
         index:number, 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         event:any 
     ) => {
         setValue(`indicators.${index}.${name}`, event.value);

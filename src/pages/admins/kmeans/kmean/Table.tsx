@@ -1,18 +1,17 @@
 import { BsEyeFill, BsFillTrashFill, BsPencilFill } from "react-icons/bs";
 import { FC } from "react";
-import { FactorInterface } from "../../../interfaces/master/factorInterface";
+import { ClassTypeInterface } from "../../../../interfaces/master/classTypeInterface";
 import { useTranslation } from "react-i18next";
-import Skeleton from "../../../components/ui/Skeleton";
-import { ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface";
+import Skeleton from "../../../../components/ui/Skeleton";
 
 type tableProps = {
-    data?: ExpertQuestionnaireInterface[],
+    data?: ClassTypeInterface[],
     isFetching?: boolean,
     page: number,
     limit: number,
-    onDelete:(id:number)=>void,
-    onUpdate:(id:number)=>void,
-    onDetail:(id:number)=>void
+    onDelete:(id:string)=>void,
+    onUpdate:(id:string)=>void,
+    onDetail:(id:string)=>void
 }
 
 const header = [
@@ -21,12 +20,8 @@ const header = [
         align: 'left',
         width: 'w-4'
     },
+    { label: 'code' },
     { label: 'name' },
-    { label: 'nik' },
-    { label: 'position' },
-    { label: 'faculty' },
-    { label: 'university' },
-    { label: 'specialty' },
     { 
         label: 'Action',
         width: 'w-16'
@@ -34,7 +29,7 @@ const header = [
 ] 
 
 const Table: FC<tableProps> = (props) => {
-    const { data, isFetching, page, limit, onDelete } = props;
+    const { data, isFetching, page, limit, onDelete, onUpdate, onDetail } = props;
     const { t } = useTranslation()
     let number:number = ((page-1)*limit)
     return (
@@ -60,25 +55,19 @@ const Table: FC<tableProps> = (props) => {
                                     {(number+index+1)}
                                 </th>
                                 <td className="px-6 py-4">
+                                    {value.code}
+                                </td>
+                                <td className="px-6 py-4">
                                     {value.name}
                                 </td>
-                                <td className="px-6 py-4">
-                                    {value.nik}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {value.position}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {value.faculty}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {value.university}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {value.specialty}
-                                </td>
                                 <td className="px-6 py-4 flex">
-                                    <span title={t("delete")} className="p-1.5 bg-red-50 hover:bg-red-100 hover:cursor-pointer rounded-full" onClick={()=>onDelete(value.id ?? 0)}>
+                                    <span title="Update" className="p-1.5 bg-green-50 hover:bg-green-100 hover:cursor-pointer rounded-full" onClick={()=>onUpdate(value.id ?? '')}>
+                                        <BsPencilFill className='text-green-600' />
+                                    </span>
+                                    <span title="Detail" className="p-1.5 bg-cyan-50 hover:bg-cyan-100 hover:cursor-pointer rounded-full" onClick={()=>onDetail(value.id ?? '')}>
+                                        <BsEyeFill className='text-cyan-600' />
+                                    </span>
+                                    <span title={t("delete")} className="p-1.5 bg-red-50 hover:bg-red-100 hover:cursor-pointer rounded-full" onClick={()=>onDelete(value.id ?? '')}>
                                         <BsFillTrashFill className="text-red-600" />
                                     </span>
                                 </td>

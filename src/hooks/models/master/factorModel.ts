@@ -3,7 +3,7 @@ import { FactorInterface, FactorSearchInterface } from "../../../interfaces/mast
 import { AxiosError } from "axios";
 
 interface ParamFactorInterface extends FactorSearchInterface {
-  	page?: number,
+	page?: number,
 	limit?: number,
 	order?: string
 }
@@ -14,7 +14,7 @@ const getData = async (url:string, params:ParamFactorInterface) => {
 		if (response.status === 200) return response.data.data;
 		throw new Error(`Request failed with status ${response.status}`);
 	} catch (error) {
-		let err = error as AxiosError
+		const err = error as AxiosError
 		return err;
 	}
 };
@@ -31,7 +31,7 @@ const postData = async (url:string, data:FactorInterface) => {
 			throw new Error(`Request failed with status ${response.status}`);
 		}
 	} catch (error) {
-		throw error;
+		return error;
 	}
 }
 

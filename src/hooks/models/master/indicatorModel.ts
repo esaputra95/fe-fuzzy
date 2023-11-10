@@ -3,7 +3,7 @@ import { IndicatorInterface, IndicatorSearchInterface } from "../../../interface
 import { AxiosError } from "axios";
 
 interface ParamIndicatorInterface extends IndicatorSearchInterface {
-  	page?: number,
+	page?: number,
 	limit?: number,
 	order?: string
 }
@@ -14,7 +14,7 @@ const getData = async (url:string, params:ParamIndicatorInterface) => {
 		if (response.status === 200) return response.data.data;
 		throw new Error(`Request failed with status ${response.status}`);
 	} catch (error) {
-		let err = error as AxiosError
+		const err = error as AxiosError
 		return err;
 	}
 };
@@ -31,7 +31,7 @@ const postData = async (url:string, data:IndicatorInterface) => {
 			throw new Error(`Request failed with status ${response.status}`);
 		}
 	} catch (error) {
-		throw error;
+		return error;
 	}
 }
 

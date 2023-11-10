@@ -1,11 +1,11 @@
 import Table from './Table'
 import TablePaging from './TablePaging'
-import { useExpertQuestionnaire } from '../../../hooks/fetch/expertQuestionnaire/useExpertQuestionnaire'
-import ModalForm from '../../../components/ui/modal/ModalForm'
+import { useExpertQuestionnaire } from '../../../../hooks/fetch/fuzzys/useExpertQuestionnaire'
+import ModalForm from '../../../../components/ui/modal/ModalForm'
 import FormExpertQuestionnaire from './form'
-import { Button } from '../../../components/input'
-import locatioanName from '../../../utils/location'
-import ModalConfirm from '../../../components/ui/modal/ModalConfirm'
+import { Button } from '../../../../components/input'
+import locatioanName from '../../../../utils/location'
+import ModalConfirm from '../../../../components/ui/modal/ModalConfirm'
 
 const ExpertQuestionnairePage = () => {
     const { 

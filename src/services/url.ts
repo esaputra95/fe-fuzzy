@@ -67,6 +67,14 @@ const url = {
         getById: 'fuzzy',
         delete: 'fuzzy',
         getSelect: 'fuzzy/select'
+    },
+    Ranking: {
+        get: 'fuzzy/rankings',
+        post: 'rankings',
+        put: 'rankings',
+        getById: 'rankings',
+        delete: 'rankings',
+        getSelect: 'rankings/select'
     }
 };
 

@@ -56,5 +56,8 @@ export interface FuzzyDataTypeInterface {
     squaredRootOfStageFuzzy: number[][],
     sintesisFuzzy: number[][],
     resultSI: number [][],
+    valueVactor: any [][][],
+    valueMin: any [][],
+    normalization: any [][]
 
 }

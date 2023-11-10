@@ -1,14 +1,13 @@
 import Table from './Table'
-import { useFuzzy } from '../../../hooks/fetch/fuzzy/useFuzzy'
+import { useFuzzy } from '../../../../hooks/fetch/fuzzys/useFuzzy'
 import FormFuzzy from './form'
-import ModalConfirm from '../../../components/ui/modal/ModalConfirm'
+import ModalConfirm from '../../../../components/ui/modal/ModalConfirm'
 
 const FuzzyPage = () => {
     const { 
         dataFuzzy, 
         isFetching,
         errors,
-        isLoadingMutate,
         register,
         onSubmit,
         handleSubmit,
@@ -32,7 +31,6 @@ const FuzzyPage = () => {
             <ModalConfirm data={modalConfirm.modalConfirm}  />
             <FormFuzzy
                 onCancel={onCancel}
-                isLoading={isLoadingMutate}
                 errors={errors}
                 idDetail={idDetail}
                 handleSubmit={handleSubmit}
@@ -64,6 +62,9 @@ const FuzzyPage = () => {
                     squaredRootOfStageFuzzy={dataFuzzy?.squaredRootOfStageFuzzy}
                     sintesisFuzzy={dataFuzzy?.sintesisFuzzy}
                     resultSI={dataFuzzy?.resultSI}
+                    valueVactor={dataFuzzy?.valueVactor}
+                    valueMin={dataFuzzy?.valueMin}
+                    normalization={dataFuzzy?.normalization}
                 />
             </div>
         </div>

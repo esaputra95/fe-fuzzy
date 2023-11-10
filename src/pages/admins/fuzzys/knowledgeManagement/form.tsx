@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import { Button, InputTextArray } from '../../../components/input';
-import { KnowledgeManagementFormProps } from '../../../interfaces/knowledgeManagementInterface';
+import { Button, InputTextArray } from '../../../../components/input';
+import { KnowledgeManagementFormProps } from '../../../../interfaces/knowledgeManagementInterface';
 import { useTranslation } from 'react-i18next';
-import Spinner from '../../../components/ui/Spinner';
+import Spinner from '../../../../components/ui/Spinner';
 import Select from "react-tailwindcss-select";
 
 const FormKnowledgeManagement: FC<KnowledgeManagementFormProps> = (props) => {

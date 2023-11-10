@@ -50,7 +50,8 @@ export const Indonesia = {
     'expert-Lecturer-data': 'Data Dosen Ahli',
     "gender": "Jenis Kelamin",
     "nik": "NIK /NIP",
-    "fuzzy": "Fuzzy AHP"
+    "fuzzy": "Fuzzy AHP",
+    'ranking': "Perankingan"
 }
 
 export const English = {

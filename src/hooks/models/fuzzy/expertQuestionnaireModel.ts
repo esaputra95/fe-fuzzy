@@ -1,25 +1,26 @@
 import { api } from "../../../services";
-import { KnowledgeManagementInterface, KnowledgeManagementSearchInterface } from "../../../interfaces/knowledgeManagementInterface";
+import { FactorSearchInterface } from "../../../interfaces/master/factorInterface";
 import { AxiosError } from "axios";
+import { ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface";
 
-interface ParamKnowledgeManagementInterface extends KnowledgeManagementSearchInterface {
-  	page?: number,
+interface ParamFactorInterface extends FactorSearchInterface {
+	page?: number,
 	limit?: number,
 	order?: string
 }
 
-const getData = async (url:string, params:ParamKnowledgeManagementInterface) => {
+const getData = async (url:string, params:ParamFactorInterface) => {
 	try {
 		const response = await api.get(url, { params: { ...params } });
 		if (response.status === 200) return response.data.data;
 		throw new Error(`Request failed with status ${response.status}`);
 	} catch (error) {
-		let err = error as AxiosError
+		const err = error as AxiosError
 		return err;
 	}
 };
 
-const postData = async (url:string, data:KnowledgeManagementInterface) => {
+const postData = async (url:string, data:ExpertQuestionnaireInterface) => {
 	try {
 		if(data.id){
 			const response = await api.put(`${url}/${data.id}`, data);
@@ -31,7 +32,7 @@ const postData = async (url:string, data:KnowledgeManagementInterface) => {
 			throw new Error(`Request failed with status ${response.status}`);
 		}
 	} catch (error) {
-		throw error;
+		return error;
 	}
 }
 
@@ -47,18 +48,28 @@ const deleteData = async (url:string, id:number) => {
 const getDataById = async (url:string, id:number) => {
 	try {
 		const response = await api.get(`${url}/${id}`)
-		if(response.status===200) return response.data.data.subVariable
+		if(response.status===200) return response.data.data.factor
 	} catch (error) {
 		return error
 	}
 }
 
-const getDataSelect = async (url:string, params:ParamKnowledgeManagementInterface) => {
+const getDataSelect = async (url:string, params:ParamFactorInterface) => {
 	try {
 		const response = await api.get(url, { params: { ...params } });
-		if (response.status === 200) return response.data.data.subVariables;
+		if (response.status === 200) return response.data.data.factors;
 	} catch (error) {
 		return error
 	}
 }
-export { getData, postData, deleteData, getDataById, getDataSelect };
+
+const getForm = async (url:string) => {
+	try {
+		const response = await api.get(`${url}`)
+		if(response.status===200) return response.data.data.form
+	} catch (error) {
+		return error
+	}
+}
+
+export { getData, postData, deleteData, getDataById, getDataSelect, getForm };

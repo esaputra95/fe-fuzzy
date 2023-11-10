@@ -3,16 +3,24 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import {  useDispatch, useSelector } from 'react-redux'
 import { setMenu } from '../../../redux/menuSlice'
-import { Card, Typography, List, ListItem, ListItemPrefix, AccordionBody, AccordionHeader, Accordion, } from "@material-tailwind/react";
+import { 
+	Card,
+	Typography,
+	List,
+	ListItem,
+	ListItemPrefix,
+	AccordionBody,
+	AccordionHeader,
+	Accordion
+} from "@material-tailwind/react";
 import {
     UserCircleIcon,
-    Cog6ToothIcon,
     InboxIcon,
-    PowerIcon,
 	HomeIcon,
 	DocumentTextIcon,
 	QueueListIcon,
-	ArrowPathIcon
+	ArrowPathIcon,
+	AdjustmentsHorizontalIcon
   } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from 'react-i18next';
@@ -44,14 +52,17 @@ const SideBarLayout = () => {
 	const { t } = useTranslation();
 
     return (
-        <Card className="w-full sticky top-0 overflow-auto h-screen max-w-[20rem] p-4 rounded-none shadow-xl shadow-blue-gray-900/5">
+        <Card 
+			className="w-full sticky top-0 overflow-auto h-screen 
+			max-w-[20rem] p-4 rounded-none shadow-xl shadow-blue-gray-900/5"
+		>
 			<div className="mb-2 p-4 bg-white">
 				<Typography className='font-bold' variant="h5" color="blue-gray">
 					FUZZY AHP
 				</Typography>
 			</div>
 			<List>
-				<ListItem onClick={()=>handleOnClickMenu('homes')}>
+				<ListItem onClick={()=>handleOnClickMenu('dashboard')}>
 					<ListItemPrefix>
 						<HomeIcon className="h-5 w-5" />
 					</ListItemPrefix>
@@ -80,7 +91,11 @@ const SideBarLayout = () => {
 						<List className="p-0">
 							{
 								MasterMenu.map((value)=> (
-									<ListItem selected={selector.menu === value.path ? true : false} key={Math.random()} onClick={()=>handleOnClickMenu(value.path)}>
+									<ListItem 
+										selected={selector.menu === value.path ? true : false} 
+										key={Math.random()} 
+										onClick={()=>handleOnClickMenu(value.path)}
+									>
 										<ListItemPrefix>
 											<ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
 										</ListItemPrefix>
@@ -91,7 +106,7 @@ const SideBarLayout = () => {
 						</List>
 					</AccordionBody>
 				</Accordion>
-        		<hr className="my-2 border-blue-gray-50" />
+				<hr className="my-2 border-blue-gray-50" />
 				<ListItem onClick={()=> handleOnClickMenu('knowledge-management')}>
 					<ListItemPrefix>
 						<DocumentTextIcon className="h-5 w-5" />
@@ -110,27 +125,23 @@ const SideBarLayout = () => {
 					</ListItemPrefix>
 					{t("fuzzy")}
 				</ListItem>
-				<ListItem selected={selector.menu === 'user' ? true : false} onClick={()=> handleOnClickMenu("user")}>
+				<ListItem onClick={()=> handleOnClickMenu('ranking')}>
+					<ListItemPrefix>
+						<AdjustmentsHorizontalIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("Perankingan")}
+				</ListItem>
+				<ListItem 
+					selected={selector.menu === 'kmeans' ? true : false} 
+					onClick={()=> handleOnClickMenu("kmeans")}
+				>
 					<ListItemPrefix>
 						<UserCircleIcon className="h-5 w-5" />
 					</ListItemPrefix>
-					{t("user")}
+					{t("K-Means")}
 				</ListItem>
-				<hr className="my-2 border-blue-gray-50" />
-				<ListItem>
-					<ListItemPrefix>
-						<Cog6ToothIcon className="h-5 w-5" />
-					</ListItemPrefix>
-					Settings
-				</ListItem>
-				<ListItem>
-					<ListItemPrefix>
-						<PowerIcon className="h-5 w-5" />
-					</ListItemPrefix>
-					Log Out
-				</ListItem>
-      		</List>
-    	</Card>
+			</List>
+		</Card>
     )
 }
 

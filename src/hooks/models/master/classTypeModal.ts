@@ -3,7 +3,7 @@ import { ClassTypeInterface, ClassTypeSearchInterface } from "../../../interface
 import { AxiosError } from "axios";
 
 interface ParamClassTypeInterface extends ClassTypeSearchInterface {
-  	page?: number,
+	page?: number,
 	limit?: number,
 	order?: string
 }
@@ -16,7 +16,7 @@ const getData = async (url:string, params:ParamClassTypeInterface) => {
 		if (response.status === 200) return response.data.data;
 		throw new Error(`Request failed with status ${response.status}`);
 	} catch (error) {
-		let err = error as AxiosError
+		const err = error as AxiosError
 		return err;
 	}
 };
@@ -33,7 +33,7 @@ const postData = async (url:string, data:ClassTypeInterface) => {
 			throw new Error(`Request failed with status ${response.status}`);
 		}
 	} catch (error) {
-		throw error;
+		return error;
 	}
 }
 

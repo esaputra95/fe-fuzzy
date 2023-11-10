@@ -1,6 +1,6 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { InputText } from '../../../components/input'
-import { ExpertQuestionnaireInterface } from '../../../interfaces/expertQuestionnaireInterface';
+import { InputText } from '../../../../components/input'
+import { ExpertQuestionnaireInterface } from '../../../../interfaces/expertQuestionnaireInterface';
 import { FC } from 'react';
 import { t } from 'i18next';
 interface FormDataProps {

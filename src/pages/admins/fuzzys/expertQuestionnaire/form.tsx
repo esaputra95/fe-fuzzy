@@ -1,8 +1,8 @@
 import { FC, Fragment, useState } from 'react'
-import { Button, InputTextArray } from '../../../components/input';
-import { ExpertQuestionnaireFormProps } from '../../../interfaces/expertQuestionnaireInterface';
+import { Button, InputTextArray } from '../../../../components/input';
+import { ExpertQuestionnaireFormProps } from '../../../../interfaces/expertQuestionnaireInterface';
 import { useTranslation } from 'react-i18next';
-import InputRadio from '../../../components/input/InputRadio';
+import InputRadio from '../../../../components/input/InputRadio';
 import FormBiodata from './formBiodata';
 import FormTable from './formTable';
 
@@ -77,13 +77,13 @@ const FormClassType: FC<ExpertQuestionnaireFormProps> = (props) => {
                         errors={errors}
                     /> :
                     tab === "Pendidikan dan Pengajaran" ?
-                    dataForm?.map((valueSub, indexSub)=> (
+                    dataForm?.map((valueSub)=> (
                         <Fragment key={Math.random().toString(36)}>
-                            <label>{valueSub.name}</label>
+                            <label>{valueSub.name} - {valueSub.code}</label>
                             {
-                                valueSub.factor.map((valueFac, indexFac)=> (
+                                valueSub.factor.map((valueFac)=> (
                                     <Fragment key={Math.random().toString(36)}>
-                                        <label>{valueFac.name}</label>
+                                        <label>{valueFac.name} - {valueFac.code+'_'+valueSub.code}</label>
                                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                             <FormTable />
                                             <tbody>
@@ -136,7 +136,7 @@ const FormClassType: FC<ExpertQuestionnaireFormProps> = (props) => {
                                                                                     />
                                                                                 </td>
                                                                                 <td className='border-2'>
-                                                                                    {valueKnow.indicators.name}
+                                                                                    {valueKnow.indicators.name} {valueFac.code+'_'+valueSub.code+(indexKnow+1)}
                                                                                 </td>
                                                                                 <td className='border-2' align='center'>
                                                                                     <InputRadio 
@@ -238,7 +238,7 @@ const FormClassType: FC<ExpertQuestionnaireFormProps> = (props) => {
                                                                                         errors={errors}
                                                                                         value={valueKnow2.indicators.id}
                                                                                     />
-                                                                                    {valueKnow2.indicators.name}
+                                                                                    {valueKnow2.indicators.name} {valueFac.code+'_'+valueSub.code+(indexKnow2+1)}
                                                                                 </td>
 
                                                                                 <InputTextArray 

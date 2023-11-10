@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { FieldArrayWithId, FieldErrors, UseFieldArrayAppend, UseFormGetValues, UseFormHandleSubmit, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { FieldArrayWithId, FieldErrors, UseFieldArrayAppend, UseFormHandleSubmit, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { DataSelectOptionInterface } from "./globalInterface";
 import { SubVariableInterface } from "./master/subVariableInterface";
 import { IndicatorInterface } from "./master/IndicatorInterface";
@@ -47,6 +47,7 @@ export type KnowledgeManagementFormProps = {
     errors: FieldErrors<KnowledgeManagementInterface>;
     isLoading?: boolean;
     idDetail?: number | null,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleChangeSelect:(name: keyof KnowledgeManagementInterface, event:any)=> void;
     selectOption:{subVariable: {
         label: string;
@@ -63,6 +64,7 @@ export type KnowledgeManagementFormProps = {
     listFormIndicator: FieldArrayWithId<KnowledgeManagementInterface, "indicators", "id">[];
     appendListFormIndicator: UseFieldArrayAppend<KnowledgeManagementInterface, "indicators">;
     selectIndicator:DataSelectOptionInterface[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleChangeSelectArray: (name: keyof KnowledgeManagementArrayFormInterface, index: number, event: any) => void;
     optionIndicator: DataSelectOptionInterface[]
     onSearchIndicator: (event: ChangeEvent<HTMLInputElement>) => void
