@@ -1,13 +1,14 @@
 import { Button } from '../../../../components/input'
-import { useRanking } from '../../../../hooks/fetch/fuzzys/useRanking'
+import Spinner from '../../../../components/ui/Spinner'
+import { usePerformance } from '../../../../hooks/fetch/fuzzys/usePerformance'
 import Table from './Table'
 
-const RankingPage = () => {
+const PerformancePage = () => {
     const { 
         data,
         isLoading,
         onSearch
-    } = useRanking()
+    } = usePerformance()
 
     return (
         <div className='w-full'>
@@ -19,8 +20,12 @@ const RankingPage = () => {
                     size="medium" 
                     className='w-full' 
                     onClick={onSearch}
+                    disabled={isLoading??false}
                 >
-                    Lihat dan Simpan Data Bobot Fuzzy AHP
+                    Lihat Data Performance
+                    {
+                        isLoading? <Spinner /> : null
+                    }
                 </Button>
                 </div>
                 <Table 
@@ -32,4 +37,4 @@ const RankingPage = () => {
     )
 }
 
-export default RankingPage
+export default PerformancePage

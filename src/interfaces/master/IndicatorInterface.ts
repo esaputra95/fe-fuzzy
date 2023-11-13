@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormGetValues, UseFormHandleSubmit, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { DataSelectOptionInterface } from "../globalInterface";
 import { SubVariableInterface } from "./subVariableInterface";
 import { ChangeEvent } from "react";
@@ -29,6 +29,7 @@ export interface IndicatorFormProps {
     isLoading?: boolean;
     idDetail?: number | null;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleChangeSelect:(event:any)=> void;
     selectSubVariable:DataSelectOptionInterface;
 }

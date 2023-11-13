@@ -1,5 +1,5 @@
 import {  useMutation, useQuery } from "@tanstack/react-query"
-import { deleteData, getData, getDataById, postData } from "../../models/fuzzy/fuzzyModel"
+import { deleteData, getData, getDataById } from "../../models/fuzzy/fuzzyModel"
 import { useEffect, useState } from "react"
 import { FuzzyDataTypeInterface, FuzzyInterface } from "../../../interfaces/fuzzyInterface"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -143,6 +143,7 @@ export const useFuzzy = () => {
         mutateById(id)
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChangeSelect = (event:any, key:keyof FuzzyInterface) => {
         setValue(key, event.value)
         if(key==="subVariableId") setSelectSubVariable(event)

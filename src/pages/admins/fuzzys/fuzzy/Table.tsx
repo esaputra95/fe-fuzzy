@@ -277,19 +277,19 @@ const Table: FC<tableProps> = (props) => {
                                                 valueLamda.map((value, index)=> (
                                                     <>
                                                         {
-                                                            index <= (lamda.length-2) ? (
+                                                            index <= (valueLamda.length-3) ? (
                                                                 <td className="px-2 py-2 font-semibold bg-gray-100">
                                                                     {factor?.code+'_'+subVariable?.code+''+(index+1)} 
                                                                 </td>
                                                             ) :
-                                                            index === lamda.length ? (
+                                                            index === valueLamda.length-1 ? (
                                                                 <td className="px-2 py-2 font-semibold bg-gray-100">
                                                                     Rata-Rata
                                                                 </td>
                                                             ):
                                                             (
                                                                 <td className="px-2 py-2 font-semibold bg-gray-100">
-                                                                    Jumlah
+                                                                    Jumlah Perbaris
                                                                 </td>
                                                             )
                                                         }
@@ -369,15 +369,40 @@ const Table: FC<tableProps> = (props) => {
                                                 {
                                                     index===0 ? (
                                                     <>
-                                                        <td></td>
+                                                        <tr>
+                                                        <td >Indikator</td>
                                                         {
                                                             valueData.map((value, index)=> (
                                                                 <td className="px-2 py-2 bg-gray-100">
-                                                                    {factor?.code+'_'+subVariable?.code+''+(index+1)} 
+                                                                    {factor?.code+'_'+subVariable?.code+''+(Math.ceil((index+1)/3))} 
                                                                 </td>
                                                                 
                                                             ))
+                                                        }</tr>
+                                                        <tr>
+                                                            <td></td>
+                                                        {
+                                                            valueData.map((value, indexData)=> (
+                                                                <>
+                                                                    {
+                                                                        (indexData+1)%3===1 ? (
+                                                                            <td className="px-2 py-2 bg-gray-100">
+                                                                                {'L'+(Math.ceil((indexData+1)/3))}
+                                                                            </td>
+                                                                        ) : (indexData+1)%3===2 ? (<td className="px-2 py-2 bg-gray-100">
+                                                                                {'M'+(Math.ceil((indexData+1)/3))}
+                                                                            </td>
+                                                                        ) : (indexData+1)%3===0 ? (
+                                                                            <td className="px-2 py-2 bg-gray-100">
+                                                                                {'U'+(Math.ceil((indexData+1)/3))}
+                                                                            </td>
+                                                                        ) : null
+                                                                    }
+                                                                </>
+                                                                
+                                                            ))
                                                         }
+                                                        </tr>
                                                     </>) : null
                                                 }
                                                 <tr className="w-full bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -531,9 +556,30 @@ const Table: FC<tableProps> = (props) => {
                                                 valueSquaredRootOf.map((valueTd, index2)=> (
                                                     <>
                                                         {
-                                                            index2===0 
+                                                            index2===0
+                                                            && index!==(sintesisFuzzy.length-3) 
+                                                            && index!==(sintesisFuzzy.length-2) 
+                                                            && index!==(sintesisFuzzy.length-1)
                                                             ? (<td className="px-2 py-2 w-20 bg-gray-100">
                                                                 {factor?.code+'_'+subVariable?.code+''+(index+1)} 
+                                                            </td>) : null
+                                                        }
+                                                        {
+                                                            index===(sintesisFuzzy.length-3) && index2==0
+                                                            ? (<td className="px-2 py-2 w-20 bg-gray-100">
+                                                                Jumlah 
+                                                            </td>) : null
+                                                        }
+                                                        {
+                                                            index===(sintesisFuzzy.length-2) && index2==0
+                                                            ? (<td className="px-2 py-2 w-20 bg-gray-100">
+                                                                1/Jumlah 
+                                                            </td>) : null
+                                                        }
+                                                        {
+                                                            index===(sintesisFuzzy.length-1) && index2==0
+                                                            ? (<td className="px-2 py-2 w-20 bg-gray-100">
+                                                                Invers 
                                                             </td>) : null
                                                         }
                                                         <td className="px-2 py-2">
@@ -572,7 +618,9 @@ const Table: FC<tableProps> = (props) => {
                                                 <td>U</td>
                                             </>) : null
                                         }
-                                        <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        {
+                                            index<resultSI.length-3 ?
+                                            <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             {
                                                 valueSquaredRootOf.map((valueTd, index2)=> (
                                                     <>
@@ -589,7 +637,9 @@ const Table: FC<tableProps> = (props) => {
                                                     </>
                                                 ))
                                             }
-                                        </tr>
+                                        </tr> : null
+                                        }
+                                        
                                     </>
                                 ))
                             }

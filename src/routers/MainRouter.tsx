@@ -14,7 +14,9 @@ import {
     RankingPage,
     FuzzyPage,
     ExpertQuestionnairePage,
-    KnowledgeManagementPage
+    KnowledgeManagementPage,
+    PerformancePage,
+    FormQuestionnaire
 } from "../pages/admins/fuzzys";
 import { KMeansPage } from "../pages/admins/kmeans";
 const MainRouters = [
@@ -73,6 +75,14 @@ const MainRouters = [
             {
                 path: 'kmeans',
                 element: <KMeansPage />
+            },
+            {
+                path: 'performance',
+                element: <PerformancePage />
+            },
+            {
+                path: 'questionnaire-respondent/form',
+                element: <FormQuestionnaire />
             },
             {
                 path: '*', 

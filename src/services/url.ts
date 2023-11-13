@@ -75,6 +75,12 @@ const url = {
         getById: 'rankings',
         delete: 'rankings',
         getSelect: 'rankings/select'
+    },
+    Performance: {
+        get: 'fuzzy/performance'
+    },
+    Questionnaire: {
+        indicator: 'questionnaire'
     }
 };
 

@@ -1,7 +1,7 @@
 import {  useMutation, useQuery } from "@tanstack/react-query"
 import { deleteData, getData, getDataById, getForm, postData } from "../../models/fuzzy/expertQuestionnaireModel"
 import { useEffect, useState } from "react"
-import { DataForm, DataFormExpertQuestionnaireInterface, ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface"
+import { DataForm, ExpertQuestionnaireInterface } from "../../../interfaces/expertQuestionnaireInterface"
 import { SubmitHandler, useForm } from "react-hook-form"
 import url from "../../../services/url"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -17,7 +17,7 @@ import usePage from "../../../utils/pageState"
 export const useExpertQuestionnaire = () => {
     const [ query, setQuery ] = useState<ExpertQuestionnaireInterface>()
     const [ idDetail, setIdDetail ] = useState<number | null>()
-    const { factor, expertQuestionnaire } = url
+    const { expertQuestionnaire } = url
     const { modalForm, setModalForm } = modalFormState()
     const { t } = useTranslation();
     const modalConfirm = modalConfirmState()

@@ -20,6 +20,7 @@ import {
 	DocumentTextIcon,
 	QueueListIcon,
 	ArrowPathIcon,
+	ChartBarIcon,
 	AdjustmentsHorizontalIcon
   } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -129,7 +130,19 @@ const SideBarLayout = () => {
 					<ListItemPrefix>
 						<AdjustmentsHorizontalIcon className="h-5 w-5" />
 					</ListItemPrefix>
-					{t("Perankingan")}
+					{t("Bobot Fuzzy AHP")}
+				</ListItem>
+				<ListItem onClick={()=> handleOnClickMenu('questionnaire-respondent')}>
+					<ListItemPrefix>
+						<AdjustmentsHorizontalIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("Kuesioner - Responden")}
+				</ListItem>
+				<ListItem onClick={()=> handleOnClickMenu('performance')}>
+					<ListItemPrefix>
+						<ChartBarIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("Performance")}
 				</ListItem>
 				<ListItem 
 					selected={selector.menu === 'kmeans' ? true : false} 
