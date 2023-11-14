@@ -16,7 +16,7 @@ import {
     ExpertQuestionnairePage,
     KnowledgeManagementPage,
     PerformancePage,
-    FormQuestionnaire
+    QuestionnairePage
 } from "../pages/admins/fuzzys";
 import { KMeansPage } from "../pages/admins/kmeans";
 const MainRouters = [
@@ -81,8 +81,8 @@ const MainRouters = [
                 element: <PerformancePage />
             },
             {
-                path: 'questionnaire-respondent/form',
-                element: <FormQuestionnaire />
+                path: 'questionnaire-respondent',
+                element: <QuestionnairePage />
             },
             {
                 path: '*', 

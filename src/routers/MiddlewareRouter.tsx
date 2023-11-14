@@ -2,8 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const Middleware = ({ page }: any) => {
   const location = useLocation();
-  // const token = localStorage.getItem("token");
-  const token = true
+  const token:string | null = localStorage.getItem("token");
   if (!token) {
     return (
       <Navigate to={'/login'} state={{ from: location }} replace />

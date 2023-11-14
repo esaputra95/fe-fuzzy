@@ -68,6 +68,6 @@ interface Factor extends FactorInterface {
     knowledge: KnowledgeManagement[]
 }
   
-  export interface DataForm  extends SubVariableInterface {
-    factor: Factor[];
-  }
+export interface DataForm  extends SubVariableInterface {
+  factor: Factor[];
+}

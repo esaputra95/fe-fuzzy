@@ -1,4 +1,5 @@
 import PublicLayout from "../components/layouts/PublicLayout";
+import { FormQuestionnaire } from "../pages/admins/fuzzys";
 import RegisterStudents from "../pages/publics/RegisterStudents";
 
 const PublicRouters = [
@@ -9,7 +10,11 @@ const PublicRouters = [
             {
                 path: '/register',
                 element: <RegisterStudents />
-            }
+            },
+            {
+                path: 'questionnaire-respondent/form',
+                element: <FormQuestionnaire />
+            },
         ]
     }
 ];

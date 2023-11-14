@@ -21,7 +21,8 @@ import {
 	QueueListIcon,
 	ArrowPathIcon,
 	ChartBarIcon,
-	AdjustmentsHorizontalIcon
+	AdjustmentsHorizontalIcon,
+	ListBulletIcon
   } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from 'react-i18next';
@@ -134,7 +135,7 @@ const SideBarLayout = () => {
 				</ListItem>
 				<ListItem onClick={()=> handleOnClickMenu('questionnaire-respondent')}>
 					<ListItemPrefix>
-						<AdjustmentsHorizontalIcon className="h-5 w-5" />
+						<ListBulletIcon className="h-5 w-5" />
 					</ListItemPrefix>
 					{t("Kuesioner - Responden")}
 				</ListItem>

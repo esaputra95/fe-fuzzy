@@ -1,4 +1,7 @@
 const url = {
+    auth: {
+        login: 'auth/login'
+    },
     user: {
         get: 'users',
         post: 'users',
@@ -80,7 +83,9 @@ const url = {
         get: 'fuzzy/performance'
     },
     Questionnaire: {
-        indicator: 'questionnaire'
+        post: 'questionnaire',
+        get: 'questionnaire',
+        indicator: 'questionnaire/indicator'
     }
 };
 
