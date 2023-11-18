@@ -54,19 +54,6 @@ export const dataLine = {
     ],
 };
 
-// function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
-//     const colorStart = 'red'
-//     const colorMid = 'blue'
-//     const colorEnd = 'green'
-
-//     const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-
-//     gradient.addColorStop(0, colorStart);
-//     gradient.addColorStop(0.5, colorMid);
-//     gradient.addColorStop(1, colorEnd);
-
-//     return gradient;
-// }
 
 const HomePage = () => {
     const chartRef = useRef<ChartJS>(null);
@@ -79,10 +66,7 @@ const HomePage = () => {
         totalPerformance,
         kmeans
     } = useDashboard();
-
-    console.log({kmeans});
     
-
     useEffect(() => {
         const chart = chartRef.current;
 
