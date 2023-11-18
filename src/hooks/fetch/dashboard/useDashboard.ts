@@ -95,7 +95,7 @@ export const useDashboard = () => {
                 labels = Object.keys(kmeansData[index])
                 dataSet=[...dataSet,
                     {
-                        label: 'c1',
+                        label: `C${(index+1)}`,
                         data: labels.map((value)=> (kmeansData[index][value])),
                         ...color[index]
                     }

@@ -60,8 +60,8 @@ const SideBarLayout = () => {
 			max-w-[20rem] p-4 rounded-none shadow-xl shadow-blue-gray-900/5"
 		>
 			<div className="mb-2 p-4 bg-white">
-				<Typography className='font-bold' variant="h5" color="blue-gray">
-					FUZZY AHP
+				<Typography className='font-bold' variant="h6" color="blue-gray">
+					PERFORMANCE ACADEMIC
 				</Typography>
 			</div>
 			<List>

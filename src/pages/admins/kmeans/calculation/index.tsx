@@ -20,7 +20,7 @@ const CalculationsPage = () => {
                         className='w-full flex'
                         variant="primary" type='submit' size="medium"
                     >
-                        Proses Data K-Means
+                        Proses Data Dashboard
                         { loading ? <div className='w-24'><Spinner  /></div> : null }
                     </Button>
                 </div>
