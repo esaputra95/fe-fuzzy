@@ -24,7 +24,7 @@ import {
 	AdjustmentsHorizontalIcon,
 	ListBulletIcon,
 	Cog6ToothIcon
-  } from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from 'react-i18next';
 import { MasterMenu } from './MenuItems';
