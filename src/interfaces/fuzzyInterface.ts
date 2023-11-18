@@ -25,6 +25,7 @@ export type FuzzyFormProps = {
     onSearchSubVariable: (event:ChangeEvent<HTMLInputElement>)=> void;
     optionSubVariable: DataSelectOptionInterface[];
     selectSubVariable:DataSelectOptionInterface;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleChangeSelect:(event:any, key:keyof FuzzyInterface)=> void;
     optionFactor: DataSelectOptionInterface[];
     selectFactor:DataSelectOptionInterface;
@@ -56,8 +57,29 @@ export interface FuzzyDataTypeInterface {
     squaredRootOfStageFuzzy: number[][],
     sintesisFuzzy: number[][],
     resultSI: number [][],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     valueVactor: any [][][],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     valueMin: any [][],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     normalization: any [][]
-
 }
+
+export type SheetData = {
+    sheet: string;
+    columns: Column[];
+    content: Content[];
+  };
+  
+  type Column = {
+    label: string;
+    value: string;
+  };
+  
+  type Content = {
+    JC1: number;
+    JC2: number;
+    JC3: number;
+    min: number;
+    cluster: string; // Anda perlu menambahkan tipe yang sesuai untuk properti "cluster"
+  };

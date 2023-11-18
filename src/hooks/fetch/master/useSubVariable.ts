@@ -189,8 +189,8 @@ export const useSubVariable = () => {
         setQuerySelect(state => ({...state, name: event.target.value}))
     }
 
-    const handleChangeSelect = (event:any) => {
-        setValue('variableId', event.value)
+    const handleChangeSelect = (event:{value: string; label: string}) => {
+        setValue('variableId', parseInt(event.value))
         setSelectSubVariable(event)
     };
 

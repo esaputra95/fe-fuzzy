@@ -8,6 +8,7 @@ import {
   } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
 
 const NavBar = () => {
 	const location = useLocation()
@@ -21,7 +22,12 @@ const NavBar = () => {
 	return (
 		<div className="w-full bg-white sticky top-0 ">
 			<div className="w-full flex justify-between h-16 items-center px-8">
-				<div className="font-semibold ">{t(location.pathname.replace('/', ''))}</div>
+				<div className="flex space-x-2 items-center">
+					<div onClick={()=> window.history.back()} className="p-2 rounded-md bg-gray-200 flex items-center justify-center hover:cursor-pointer">
+						<BsArrowLeft className='text-gray-900' />
+						</div>
+					<div className="font-semibold ">{t(location.pathname.replace('/', ''))}</div>
+				</div>
 				<Menu>
 					<MenuHandler>
 						<Avatar

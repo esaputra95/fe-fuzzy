@@ -21,7 +21,7 @@ const FormClassType: FC<ExpertQuestionnaireFormProps> = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="text-sm font-medium text-center 
-                text-gray-500 border-b border-gray-200 
+                text-gray-900 border-b border-gray-200 
                 dark:text-gray-400 dark:border-gray-700"
             >
                 <ul className="flex -mb-px overflow-auto">
@@ -84,7 +84,7 @@ const FormClassType: FC<ExpertQuestionnaireFormProps> = (props) => {
                                 valueSub.factor.map((valueFac)=> (
                                     <Fragment key={Math.random().toString(36)}>
                                         <label>{valueFac.name} - {valueFac.code+'_'+valueSub.code}</label>
-                                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                        <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                                             <FormTable />
                                             <tbody>
                                                 {

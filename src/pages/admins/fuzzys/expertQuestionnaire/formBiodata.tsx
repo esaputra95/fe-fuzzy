@@ -1,5 +1,5 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { InputText } from '../../../../components/input'
+import { InputText, SelectOption } from '../../../../components/input'
 import { ExpertQuestionnaireInterface } from '../../../../interfaces/expertQuestionnaireInterface';
 import { FC } from 'react';
 import { t } from 'i18next';
@@ -31,11 +31,16 @@ const FormBiodata: FC<FormDataProps> = (props) => {
                 />
             </div>
             <div className='py-2'>
-                <InputText
+                <SelectOption
+                    data={[
+                        {value: '', label: ''},
+                        {value: '1', label: 'Laki-Laki'},
+                        {value: '0', label: 'Perempuan'}
+                    ]}
                     name='gender'
                     register={register}
                     errors={errors}
-                    label={t("gender")}
+                    label='Jenis Kelamin'
                 />
             </div>
             <div className='py-2'>

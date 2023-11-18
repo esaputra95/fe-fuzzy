@@ -3,7 +3,7 @@ import { FuzzyInterface, FuzzySearchInterface } from "../../../interfaces/fuzzyI
 import { AxiosError } from "axios";
 
 interface ParamFuzzyInterface extends FuzzySearchInterface {
-  	page?: number,
+	page?: number,
 	limit?: number,
 	order?: string
 }
@@ -18,7 +18,7 @@ const getData = async (url:string, params:ParamFuzzyInterface | undefined) => {
 		throw new Error('Parameter not match')
 		
 	} catch (error) {
-		let err = error as AxiosError
+		const err = error as AxiosError
 		return err;
 	}
 };
@@ -26,10 +26,10 @@ const getData = async (url:string, params:ParamFuzzyInterface | undefined) => {
 const postData = async (url:string, data:FuzzyInterface) => {
 	try {
 		const response = await api.post(url, data);
-			if(response.status === 200) return response.data
-			throw new Error(`Request failed with status ${response.status}`);
+		if(response.status === 200) return response.data
+		throw new Error(`Request failed with status ${response.status}`);
 	} catch (error) {
-		throw error;
+		return error;
 	}
 }
 

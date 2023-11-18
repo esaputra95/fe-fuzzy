@@ -9,7 +9,14 @@ export interface QuestionnaireInterface {
 
 export interface QuestionnaireDataInterface {
     name?: string;
-    questionary: ScalaInterface[]
+    gender?: string;
+    group?: string;
+    lastStudy?: string;
+    skill?: string;
+    status?: string;
+    studyProgram?: string;
+    university?: string;
+    questionary?: ScalaInterface[]
 }
 
 interface ScalaInterface {

@@ -19,11 +19,26 @@ const Table: FC<TableProps> = (props) => {
                     isLoading ? 
                     <Skeleton cols={4} rows={2} /> : null
                 }
-                <table className="w-full table-auto p-4 text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full table-auto p-4 text-sm text-left text-gray-900 dark:text-gray-400">
                     <thead>
                         <tr className="">
                             <th className="p-4">
-                                Nama Respondent
+                                Nama
+                            </th>
+                            <th className="p-4">
+                                Jenis Kelamin
+                            </th>
+                            <th className="p-4">
+                                Golongan
+                            </th>
+                            <th className="p-4">
+                                Pendidikan Terakhir
+                            </th>
+                            <th className="p-4">
+                                Bidang Keahlian
+                            </th>
+                            <th className="p-4">
+                                Universitas
                             </th>
                         </tr>
                     </thead>
@@ -34,6 +49,31 @@ const Table: FC<TableProps> = (props) => {
                                     <td className="p-4">
                                         {
                                             value.name ?? ''
+                                        }
+                                    </td>
+                                    <td className="p-4">
+                                        {
+                                            value.gender ?? ''
+                                        }
+                                    </td>
+                                    <td className="p-4">
+                                        {
+                                            value.group ?? ''
+                                        }
+                                    </td>
+                                    <td className="p-4">
+                                        {
+                                            value?.lastStudy
+                                        }
+                                    </td>
+                                    <td className="p-4">
+                                        {
+                                            value?.skill
+                                        }
+                                    </td>
+                                    <td className="p-4">
+                                        {
+                                            value?.university
                                         }
                                     </td>
                                 </tr>

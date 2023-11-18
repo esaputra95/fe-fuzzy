@@ -18,7 +18,7 @@ import {
     PerformancePage,
     QuestionnairePage
 } from "../pages/admins/fuzzys";
-import { KMeansPage } from "../pages/admins/kmeans";
+import { CalculationsPage, KMeansPage } from "../pages/admins/kmeans";
 const MainRouters = [
     {
         path: '/',
@@ -83,6 +83,10 @@ const MainRouters = [
             {
                 path: 'questionnaire-respondent',
                 element: <QuestionnairePage />
+            },
+            {
+                path: 'calculations',
+                element: <CalculationsPage />
             },
             {
                 path: '*', 

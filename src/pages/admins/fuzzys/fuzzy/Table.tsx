@@ -53,15 +53,15 @@ const Table: FC<tableProps> = (props) => {
             <div className="relative w-full overflow-x-auto max-h-100">
             
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         1.  MENENTUKAN MATRIKS PERBANDINGAN AHP
                     </div>
                 {
                     !isFetching && data && data.length > 0 ? data.map((value)=>(
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-4">
+                        <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400 mt-4">
                             <tbody className="w-full">
                                 <tr className="bg-gray-400 w-full">
-                                    <td colSpan={value.data.length+1} className="px-2 py-2 text-gray-500">
+                                    <td colSpan={value.data.length+1} className="px-2 py-2 text-gray-900">
                                         { value.respondentName }
                                     </td>
                                 </tr>
@@ -71,7 +71,7 @@ const Table: FC<tableProps> = (props) => {
                                             {
                                                 index===0 ? (
                                                 <>
-                                                    <td></td>
+                                                    <td className="px-2 py-2">Indicator</td>
                                                     {
                                                         valueData.map((value, index)=> (
                                                             <td className="px-2 py-2 bg-gray-100">
@@ -109,17 +109,17 @@ const Table: FC<tableProps> = (props) => {
                 }
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         2. PERKALIAN ANTAR MATRIKS PERBANDINGAN
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                         {
                             multiplicationMatrix?.map((valueMultiplication, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueMultiplication.map((value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
@@ -152,17 +152,17 @@ const Table: FC<tableProps> = (props) => {
                     </table>
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         3. AKAR PANGKAT SEBANYAK RESPONDEN
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                         {
                             squaredRootOf?.map((valueSquaredRootOf, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueSquaredRootOf.map((value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
@@ -202,17 +202,17 @@ const Table: FC<tableProps> = (props) => {
                     </table>
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         4. EIGEN VECTOR
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                         {
                             eigenVector?.map((valueEigenVector, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueEigenVector.map((value, index)=> (
                                                     <>
@@ -223,7 +223,7 @@ const Table: FC<tableProps> = (props) => {
                                                                 </td>
                                                             ) : (
                                                                 <td className="px-2 py-2 bg-gray-100">
-                                                                    Nilai
+                                                                    EIGEN VECTOR
                                                                 </td>
                                                             )
                                                         }
@@ -233,7 +233,8 @@ const Table: FC<tableProps> = (props) => {
                                             }
                                         </>) : null
                                     }
-                                    <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <tr className="overflow-auto bg-white border-b 
+                                        dark:bg-gray-800 dark:border-gray-700">
                                         {
                                             valueEigenVector.map((valueTd, index2)=> (
                                                 <>
@@ -262,17 +263,17 @@ const Table: FC<tableProps> = (props) => {
                     </table>
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         5. MENGUKUR KONSISTENSI UNTUK MENDAPATKAN NILAI LAMDA
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-auto">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400 overflow-auto">
                         {
                             lamda?.map((valueLamda, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueLamda.map((value, index)=> (
                                                     <>
@@ -350,16 +351,16 @@ const Table: FC<tableProps> = (props) => {
                     </table>
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         6. TAHAPAN TFN (FUZZYFIKASI)
                         
                     </div>
                     {
                         !isFetching && stageFuzzy && stageFuzzy.length > 0 ? stageFuzzy.map((value)=>(
-                            <table className="w-full text-sm text-left overflow-auto text-gray-500 dark:text-gray-400 mt-4">
+                            <table className="w-full text-sm text-left overflow-auto text-gray-900 dark:text-gray-400 mt-4">
                                 <tbody className="w-full">
                                     <tr className="bg-gray-400 w-full">
-                                        <td colSpan={value.data.length+1} className="px-2 py-2 text-gray-500">
+                                        <td colSpan={value.data.length+1} className="px-2 py-2 text-gray-900">
                                             { value.respondentName }
                                         </td>
                                     </tr>
@@ -370,7 +371,7 @@ const Table: FC<tableProps> = (props) => {
                                                     index===0 ? (
                                                     <>
                                                         <tr>
-                                                        <td >Indikator</td>
+                                                            <td >Indikator</td>
                                                         {
                                                             valueData.map((value, index)=> (
                                                                 <td className="px-2 py-2 bg-gray-100">
@@ -433,17 +434,17 @@ const Table: FC<tableProps> = (props) => {
                     }
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         7. PERKALIAN ANTAR MATRIKS PERBANDINGAN
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-4">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400 mb-4">
                         {
                             multiplicationMatrixStageFuzzy?.map((valueMultiplication, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueMultiplication.map((value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
@@ -452,6 +453,30 @@ const Table: FC<tableProps> = (props) => {
                                                     
                                                 ))
                                             }
+                                            <tr>
+                                                <td></td>
+                                                {
+                                                    valueMultiplication.map((value, indexData)=> (
+                                                        <>
+                                                            {
+                                                                (indexData+1)%3===1 ? (
+                                                                    <td className="px-2 py-2 bg-gray-100">
+                                                                        {'L'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : (indexData+1)%3===2 ? (<td className="px-2 py-2 bg-gray-100">
+                                                                        {'M'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : (indexData+1)%3===0 ? (
+                                                                    <td className="px-2 py-2 bg-gray-100">
+                                                                        {'U'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : null
+                                                            }
+                                                        </>
+                                                        
+                                                    ))
+                                                }
+                                            </tr>
                                         </>) : null
                                     }
                                     <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -477,17 +502,17 @@ const Table: FC<tableProps> = (props) => {
                     </table>
                 </div>
                 <div className="w-full">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         8. AKAR PANGKAT SEBANYAK RESPONDEN
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                         {
                             squaredRootOfStageFuzzy?.map((valueSquaredRootOf, index)=> (
                                 <>
                                     {
                                         index===0 ? (
                                         <>
-                                            <td></td>
+                                            <td className="px-2 py-2">Indicator</td>
                                             {
                                                 valueSquaredRootOf.map((value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
@@ -496,6 +521,30 @@ const Table: FC<tableProps> = (props) => {
                                                     
                                                 ))
                                             }
+                                            <tr>
+                                                <td></td>
+                                                {
+                                                    valueSquaredRootOf.map((value, indexData)=> (
+                                                        <>
+                                                            {
+                                                                (indexData+1)%3===1 ? (
+                                                                    <td className="px-2 py-2 bg-gray-100">
+                                                                        {'L'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : (indexData+1)%3===2 ? (<td className="px-2 py-2 bg-gray-100">
+                                                                        {'M'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : (indexData+1)%3===0 ? (
+                                                                    <td className="px-2 py-2 bg-gray-100">
+                                                                        {'U'+(Math.ceil((indexData+1)/3))}
+                                                                    </td>
+                                                                ) : null
+                                                            }
+                                                        </>
+                                                        
+                                                    ))
+                                                }
+                                            </tr>
                                         </>) : null
                                     }
                                     <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -528,17 +577,17 @@ const Table: FC<tableProps> = (props) => {
                 </div>
                 <div className="grid grid-cols-2 gap-8">
                     <div className="w-full">
-                        <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                        <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                             9. Menentukan nilai sintesis fuzzy 
                         </div>
                         <div className="
                             flex
                             p-4
-                            text-gray-500
+                            text-gray-900
                         ">
                             Jumlah Penilai
                         </div>
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                             {
                                 sintesisFuzzy?.map((valueSquaredRootOf, index)=> (
                                     <>
@@ -595,17 +644,17 @@ const Table: FC<tableProps> = (props) => {
                         </table>
                     </div>
                     <div className="w-full">
-                        <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                        <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                             10. Menentukan nilai sintesis fuzzy 
                         </div>
                         <div className="
                             flex
                             p-4
-                            text-gray-500
+                            text-gray-900
                         ">
-                            Hasil SI
+                            Hasil Sintesis Fuzzy
                         </div>
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                             {
                                 resultSI?.map((valueSquaredRootOf, index)=> (
                                     <>
@@ -646,15 +695,15 @@ const Table: FC<tableProps> = (props) => {
                         </table>
                     </div>
                 </div>
-                <div className=" w-full rounded-md text-gray-500">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                <div className=" w-full rounded-md text-gray-900">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         11. NILAI VECTOR
                     </div>
-                    <div className=" w-full my-4 p-6 rounded-md text-gray-500 grid grid-cols-4 gap-4">
+                    <div className=" w-full my-4 p-6 rounded-md text-gray-900 grid grid-cols-4 gap-4">
                         {
                             valueVactor?.map((value)=> (
                                 <div className="w-full">
-                                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                    <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                                         {
                                             value.map((value2)=> (
                                                 <tr className="overflow-auto bg-white border-b 
@@ -676,8 +725,8 @@ const Table: FC<tableProps> = (props) => {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                <div className=" w-full rounded-md text-gray-500">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                <div className=" w-full rounded-md text-gray-900">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         12. AMBIL NILAI MINIMUM DARI SETIAP VEKTOR (d')
                     </div>
                     <div className="w-full">
@@ -699,8 +748,8 @@ const Table: FC<tableProps> = (props) => {
                         </table>
                     </div>
                 </div>
-                <div className=" w-full rounded-md text-gray-500">
-                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-500">
+                <div className=" w-full rounded-md text-gray-900">
+                    <div className="bg-cyan-300 w-full my-4 p-6 rounded-md text-gray-900">
                         13. NORMALISASI NILAI BOBOT VEKTOR (d(An))
                     </div>
                     <div className="w-full">

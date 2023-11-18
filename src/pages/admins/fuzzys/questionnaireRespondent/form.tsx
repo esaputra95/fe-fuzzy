@@ -39,9 +39,9 @@ const FormQuestionnaire = () => {
                         <SelectOption
                             name="gender"
                             data={[
-                                {value: undefined, label: ''},
-                                {value: '1', label: 'Laki-Laki'},
-                                {value: '0', label: 'Perempuan'}
+                                {value: '', label: ''},
+                                {value: 'Laki-Laki', label: 'Laki-Laki'},
+                                {value: 'Perempuan', label: 'Perempuan'}
                             ]}
                             register={register}
                             errors={errors}
@@ -70,7 +70,6 @@ const FormQuestionnaire = () => {
                         <SelectOption
                             name="status"
                             data={[
-                                {value: undefined, label: ''},
                                 {value: 'PNS', label: 'PNS'},
                                 {value: 'PPPK', label: 'PPPK'},
                                 {value: 'non-PNS', label: 'non-PNS'},

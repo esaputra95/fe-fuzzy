@@ -1,4 +1,4 @@
-import { BsEyeFill, BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import Skeleton from "../../../../components/ui/Skeleton";
@@ -30,12 +30,12 @@ const header = [
 ] 
 
 const Table: FC<tableProps> = (props) => {
-    const { data, isFetching, page, limit, onDelete, onDetail } = props;
+    const { data, isFetching, page, limit, onDelete } = props;
     const { t } = useTranslation()
-    let number:number = ((page-1)*limit)
+    const number:number = ((page-1)*limit)
     return (
         <div className="relative overflow-x-auto max-h-100">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         {
@@ -68,9 +68,6 @@ const Table: FC<tableProps> = (props) => {
                                     {value.reference}
                                 </td>
                                 <td className="px-6 py-4 flex">
-                                    <span title="Detail" className="p-1.5 bg-cyan-50 hover:bg-cyan-100 hover:cursor-pointer rounded-full" onClick={()=>onDetail(value.id ?? 0)}>
-                                        <BsEyeFill className='text-cyan-600' />
-                                    </span>
                                     <span title={t("delete")} className="p-1.5 bg-red-50 hover:bg-red-100 hover:cursor-pointer rounded-full" onClick={()=>onDelete(value.id ?? 0)}>
                                         <BsFillTrashFill className="text-red-600" />
                                     </span>

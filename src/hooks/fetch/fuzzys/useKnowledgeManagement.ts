@@ -64,7 +64,7 @@ export const useKnowledgeManagement = () => {
         networkMode: 'always',
         queryFn: async () => await getData(knowledgeManagement.get, 
             {
-                ...query, page:page.page
+                ...query, page:page.page, limit: page.limit
             }
         ),
         onSuccess(data) {
@@ -74,7 +74,7 @@ export const useKnowledgeManagement = () => {
 
     useEffect(()=> {
         refetch()
-    }, [page.page])
+    }, [page.page, page.limit])
 
     useEffect(()=> {
         refetchSelect()

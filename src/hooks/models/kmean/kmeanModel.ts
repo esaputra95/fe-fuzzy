@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 const processKMeans = async () => {
 	try {
 		const response = await api.get('fuzzy/process-kmeans');
-		return response.status
+		return response.data
 	} catch (error) {
 		const err = error as AxiosError
 		return err
@@ -26,7 +26,15 @@ const downloadFile = async () => {
 	} catch (error) {
 		return error
 	}
-	
 }
 
-export { processKMeans, downloadFile };
+const processDownload = async () => {
+	try {
+		const response = await api.post('fuzzy/compile-excel')
+		return response.status
+	} catch (error) {
+		return error as AxiosError
+	}
+}
+
+export { processKMeans, downloadFile, processDownload };

@@ -1,5 +1,10 @@
 export const MasterMenu = [
     {
+        label: 'factor',
+        path: 'factor',
+        active: false,
+    },
+    {
         label: 'variable',
         path: 'variable',
         active: false,
@@ -12,11 +17,6 @@ export const MasterMenu = [
     {
         label: 'indicator',
         path: 'indicator',
-        active: false,
-    },
-    {
-        label: 'factor',
-        path: 'factor',
         active: false,
     },
 ];

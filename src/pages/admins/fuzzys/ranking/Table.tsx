@@ -19,30 +19,34 @@ const Table: FC<TableProps> = (props) => {
                     isLoading ? 
                     <Skeleton cols={4} rows={2} /> : null
                 }
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead>
-                        <tr className="bg-deep-purple-100">
-                            <th>
-                                Kriteria
-                            </th>
-                            <th>
-                                Indikator
-                            </th>
-                            <th colSpan={2}>
-                                Bobot
-                            </th>
-                        </tr>
-                    </thead>
+                
                     {
                         data?.map((value)=>(
                             <Fragment key={Math.random().toString(5)}>
+                                <table className="w-full border-gray-800 border border-x border-y text-sm text-left text-gray-900 dark:text-gray-400 mb-12">
+                                <thead>
+                                    <tr className="bg-deep-purple-100 border-gray-800 border border-x border-y">
+                                        <th>
+                                            Sub Variabel
+                                        </th>
+                                        <th>
+                                            Faktor
+                                        </th>
+                                        <th>
+                                            Indikator
+                                        </th>
+                                        <th className="text-right">
+                                            Nilai Bobot
+                                        </th>
+                                    </tr>
+                                </thead>
                                 {
                                     value.data?.map((value2, index2)=>(
                                         <Fragment key={Math.random().toString(5)}>
                                             {
                                                 value2.bobot.map((value3, index3)=>{
                                                     return(
-                                                    <tr className="bg-white border-x border-y dark:bg-gray-800 dark:border-gray-700">
+                                                    <tr className="bg-white border-gray-800 border border-x border-y dark:bg-gray-800 dark:border-gray-700">
                                                         {
                                                             index3===0 && index2===0 ? (
                                                             <td className="bg-green-50 w-4/12 p-4" rowSpan={value.subVariable?.total}>
@@ -67,10 +71,10 @@ const Table: FC<TableProps> = (props) => {
                                         
                                     ))
                                 }
+                </table>
                             </Fragment>
                         ))
                     }
-                </table>
             </div>
         </div>
     )

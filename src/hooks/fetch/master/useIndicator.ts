@@ -61,14 +61,14 @@ export const useIndicator = () => {
 
     useEffect(()=> {
         refetch()
-    }, [page.page])
+    }, [page.page, page.limit])
 
     const { mutate:mutateById } = useMutation({
         mutationFn: (id:number) => getDataById(indicator.getById, id),
         onSuccess:(data:IndicatorInterface)=>{
             reset(data)
             const select = optionSubVariable.filter(value=> value.value==data.subVariableId+"");
-            setSelectSubVariable(select[0])
+            setSelectSubVariable({label: select[0].label, value: select[0].value?? ''})
             setModalForm((state)=>({
                 ...state,
                 visible: true
@@ -183,8 +183,8 @@ export const useIndicator = () => {
         mutateById(id)
     }
 
-    const handleChangeSelect = (event:any) => {
-        setValue('subVariableId', event.value)
+    const handleChangeSelect = (event:{value: string; label: string}) => {
+        setValue('subVariableId', parseInt(event.value))
         setSelectSubVariable(event)
     };
 

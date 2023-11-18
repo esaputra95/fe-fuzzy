@@ -1,28 +1,28 @@
 import { useState } from "react";
-import { downloadFile, processKMeans } from './../../models/kmean/kmeanModel'
+import { downloadFile, processKMeans, processDownload } from './../../models/kmean/kmeanModel'
+import { SheetData } from "../../../interfaces/fuzzyInterface";
 
 export const useKMeans = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState<SheetData[]>();
     const handleOnProcessKMeans = async () => {
         setLoading(state=> !state)
         const process = await processKMeans();
-        console.log({process});
-        
-        if(process===200){
-            await handleDownload()
-        }
+        setData(process.data)
+        setLoading(false)
     }
 
     const handleDownload = async () => {
-        const download = await downloadFile();
-        
-        if(download){
-            setLoading(state=> !state)
+        const process = await processDownload()
+        if(process==200){
+            await downloadFile();
         }
     }
 
     return {
         handleOnProcessKMeans,
-        loading
+        loading,
+        data,
+        handleDownload
     }
 }

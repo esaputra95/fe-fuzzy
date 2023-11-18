@@ -1,43 +1,19 @@
 import { FC } from 'react'
 import { InputText, Button } from '../../../../components/input';
-import { IndicatorFormProps } from '../../../../interfaces/master/IndicatorInterface';
+import { ClassTypeFormProps } from '../../../../interfaces/master/classTypeInterface';
 import { useTranslation } from 'react-i18next';
 import Spinner from '../../../../components/ui/Spinner';
-import Select from "react-tailwindcss-select";
 
-const FormIndicator: FC<IndicatorFormProps> = (props) => {
-    const { 
-        handleSubmit, 
-        onSubmit, 
-        register, 
-        onCancel, 
-        onSearchSubVariable,
-        optionSubVariable,
-        errors,
-        isLoading,
-        idDetail,
-        selectSubVariable,
-        handleChangeSelect
-    } = props;
+const FormClassType: FC<ClassTypeFormProps> = (props) => {
+    const { handleSubmit, onSubmit, register, onCancel, errors, isLoading, idDetail } = props;
     const {t} = useTranslation()
+    
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col space-y-4'>
-                <div className='w-full'>
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Sub Variable    
-                    </label>
-                    <Select
-                        {...register('subVariableId')}
-                        onSearchInputChange={onSearchSubVariable}
-                        isSearchable={true}
-                        value={selectSubVariable ?? undefined}
-                        onChange={(event)=> handleChangeSelect(event)}
-                        options={optionSubVariable ? optionSubVariable : [{value:'', label:''}]} primaryColor={''}
-                    />
-                </div>
                 <InputText errors={errors} readOnly={idDetail?true:false} register={register} label={t("code")} name='code' />
                 <InputText errors={errors} readOnly={idDetail?true:false} register={register} label={t("name")} name='name' />
+                <InputText errors={errors} readOnly={idDetail?true:false} register={register} label={t("price")} name='price' />
                 <InputText errors={errors} readOnly={idDetail?true:false} register={register} label={t("description")} name='description' />
             </div>
             <div className='w-full flex justify-end space-x-2'>
@@ -48,4 +24,4 @@ const FormIndicator: FC<IndicatorFormProps> = (props) => {
     )
 }
 
-export default FormIndicator
+export default FormClassType

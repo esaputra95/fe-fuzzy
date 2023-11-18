@@ -22,7 +22,8 @@ import {
 	ArrowPathIcon,
 	ChartBarIcon,
 	AdjustmentsHorizontalIcon,
-	ListBulletIcon
+	ListBulletIcon,
+	Cog6ToothIcon
   } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from 'react-i18next';
@@ -137,7 +138,7 @@ const SideBarLayout = () => {
 					<ListItemPrefix>
 						<ListBulletIcon className="h-5 w-5" />
 					</ListItemPrefix>
-					{t("Kuesioner - Responden")}
+					{t("Kuesioner Responden")}
 				</ListItem>
 				<ListItem onClick={()=> handleOnClickMenu('performance')}>
 					<ListItemPrefix>
@@ -153,6 +154,15 @@ const SideBarLayout = () => {
 						<UserCircleIcon className="h-5 w-5" />
 					</ListItemPrefix>
 					{t("K-Means")}
+				</ListItem>
+				<ListItem 
+					selected={selector.menu === 'calculations' ? true : false} 
+					onClick={()=> handleOnClickMenu("calculations")}
+				>
+					<ListItemPrefix>
+						<Cog6ToothIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("Perhitungan")}
 				</ListItem>
 			</List>
 		</Card>

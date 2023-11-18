@@ -3,6 +3,7 @@ export const Indonesia = {
     "data-masters": 'Master Data',
     "title": 'ESP BIMBEL',
     "homes": 'Dashboard',
+    "dashboard": 'Dashboard',
     "tutors": "Tentor",
     "class-types": "Tipe Kelas",
     "class": "Kelas",
@@ -25,11 +26,10 @@ export const Indonesia = {
     "student-master-reports": "Laporan Master Siswa",
     "tutor-master-reports": "Laporan Master Tentor",
     "register-reports": "Laporan Pendafataran Siswa",
-    //
     "save": "Simpan",
     "cancel": "Batal",
     "delete": "Hapus",
-
+    "specialty": "Bidang Keahlian",
     "code": "Kode",
     "name": "Nama",
     "description": "Deskripsi",
@@ -49,9 +49,12 @@ export const Indonesia = {
     "expert-questionnaire": "Kuesioner Ahli",
     'expert-Lecturer-data': 'Data Dosen Ahli',
     "gender": "Jenis Kelamin",
-    "nik": "NIK /NIP",
+    "nik": "NIP / PPPK / NIK",
     "fuzzy": "Fuzzy AHP",
-    'ranking': "Perankingan"
+    'ranking': "Perankingan",
+    "questionnaire-respondent": "Kuesioner Responden",
+    "performance": "Performance",
+    "calculations": "Perhitungan"
 }
 
 export const English = {
@@ -59,6 +62,7 @@ export const English = {
     "data-masters": 'Data Master',
     "title": 'ESP BIMBEL',
     "homes": 'Home',
+    "dashboard": 'dashboard',
     "tutors": 'Tutor',
     'class-types': "Class Types",
     "class": "Class",
@@ -81,7 +85,7 @@ export const English = {
     "student-master-reports": 'Student Master Reports',
     "tutor-master-reports": 'Tutor Master Reports',
     "register-reports" : "Student Register Reports",
-    //
+    "specialty": "Specialty",
     "save": "Simpan",
     "cancel": "Cancel",
     "delete": "Delete",

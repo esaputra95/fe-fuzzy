@@ -72,9 +72,7 @@ const IndicatorPage = () => {
                     onDetail={onDetail}
                 />
                 <TablePaging
-                    page={page.page}
-                    total={page.total}
-                    handlePage={page.handlePage}
+                    props={page}
                 />
             </div>
         </div>
