@@ -1,6 +1,5 @@
 import AdminLayout from "../components/layouts/admin/AdminLayout";
 import HomePage from "../pages/admins/dashboard/HomePage";
-import NotFoundPage from "../pages/NotFoundPage";
 import UserPage from "../pages/admins/users";
 import Middleware from "./MiddlewareRouter";
 import { 
@@ -87,10 +86,6 @@ const MainRouters = [
             {
                 path: 'calculations',
                 element: <CalculationsPage />
-            },
-            {
-                path: '*', 
-                element: <NotFoundPage />
             }
         ], 
     }

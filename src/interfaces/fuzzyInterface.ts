@@ -43,6 +43,7 @@ export interface FuzzyData {
     respondentName: string;
     subVariableCode: string;
 }  
+
 export interface FuzzyDataTypeInterface {
     fuzzy: FuzzyData[];
     info: Info;
@@ -69,17 +70,17 @@ export type SheetData = {
     sheet: string;
     columns: Column[];
     content: Content[];
-  };
+};
   
-  type Column = {
+type Column = {
     label: string;
     value: string;
-  };
+};
   
-  type Content = {
+type Content = {
     JC1: number;
     JC2: number;
     JC3: number;
     min: number;
     cluster: string; // Anda perlu menambahkan tipe yang sesuai untuk properti "cluster"
-  };
+};

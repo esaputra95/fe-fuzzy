@@ -102,19 +102,19 @@ const HomePage = () => {
         <div className='w-full space-y-16'>
             <div className='w-full flex flex-col justify-center m-auto'>
                 <label className='font-semibold text-center'>
-                    HASIL NILAI BOBOT FUZZY AHP
+                    NILAI BOBOT FUZZY AHP
                 </label>
                 <Bar options={options} data={dataBobot} />
             </div>
             <div className='w-full flex flex-col justify-center m-auto'>
                 <label className='font-semibold text-center'>
-                    HASIL NILAI JUMLAH PERFORMANCE
+                    NILAI PERFORMANSI AKADEMISI
                 </label>
                 <Bar options={options} data={dataPerformance} />
             </div>
             <div className='w-full flex flex-col justify-center m-auto'>
                 <label className='font-semibold text-center'>
-                    HASIL NILAI CLUSTERING K-MENAS
+                    NILAI CLUSTERING K-MEANS
                 </label>
                 <Chart ref={chartRef} type='line' data={chartData} />
             </div>

@@ -24,7 +24,7 @@ const downloadFile = async () => {
         window.URL.revokeObjectURL(url);
 		return response
 	} catch (error) {
-		return error
+		return error as AxiosError
 	}
 }
 
@@ -37,4 +37,13 @@ const processDownload = async () => {
 	}
 }
 
-export { processKMeans, downloadFile, processDownload };
+const getCentroid = async () => {
+	try {
+		const response = await api.get('fuzzy/centroid');
+		return response.data
+	} catch (error) {
+		return error as AxiosError
+	}
+}
+
+export { processKMeans, downloadFile, processDownload, getCentroid };
