@@ -15,6 +15,8 @@ import {
 import { Bar, Chart } from 'react-chartjs-2';
 import { useDashboard } from '../../../hooks/fetch/dashboard/useDashboard';
 import { useEffect, useRef, useState } from 'react';
+import { Button } from '../../../components/input';
+import Skeleton from '../../../components/ui/Skeleton';
 
 ChartJS.register(
     CategoryScale,
@@ -64,7 +66,18 @@ const HomePage = () => {
     const {
         bobot,
         totalPerformance,
-        kmeans
+        kmeans,
+        university,
+        gender,
+        handleFilter,
+        filter,
+        setFilter,
+        loadingPerformance,
+        faculty,
+        filterKm,
+        setFilterKm,
+        handleFilterKm,
+        loadingKm
     } = useDashboard();
     
     useEffect(() => {
@@ -110,13 +123,167 @@ const HomePage = () => {
                 <label className='font-semibold text-center'>
                     NILAI PERFORMANSI AKADEMISI
                 </label>
-                <Bar options={options} data={dataPerformance} />
+                <div className='w-full flex gap-4'>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Universitas
+                        </label>
+                        <select
+                            value={filter.university}
+                            onChange={(e)=>setFilter({...filter, 'university': e.target.value})}
+                            id="university"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                university?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Jenis Kelamin
+                        </label>
+                        <select
+                            value={filter.gender}
+                            onChange={(e)=>setFilter({...filter, 'gender': e.target.value})}
+                            id="gender"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                gender?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Fakultas
+                        </label>
+                        <select
+                            value={filter.faculty}
+                            onChange={(e)=>setFilter({...filter, 'faculty': e.target.value})}
+                            id="faculty"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                faculty?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='flex items-end'>
+                        <Button
+                            variant='primary'
+                            onClick={()=>handleFilter(filter.university, filter.gender, filter.faculty)}
+                        >
+                            Filter
+                        </Button>
+                    </div>
+                </div>
+                {
+                    !loadingPerformance ? <Bar options={options} data={dataPerformance} /> :
+                    <Skeleton cols={4} rows={16} />
+                }
+                
             </div>
             <div className='w-full flex flex-col justify-center m-auto'>
                 <label className='font-semibold text-center'>
                     NILAI CLUSTERING K-MEANS
                 </label>
-                <Chart ref={chartRef} type='line' data={chartData} />
+                <div className='w-full flex gap-4'>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Universitas
+                        </label>
+                        <select
+                            value={filterKm.university}
+                            onChange={(e)=>setFilterKm({...filterKm, 'university': e.target.value})}
+                            id="university"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                university?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Jenis Kelamin
+                        </label>
+                        <select
+                            value={filterKm.gender}
+                            onChange={(e)=>setFilterKm({...filterKm, 'gender': e.target.value})}
+                            id="gender"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                gender?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='w-full'>
+                        <label
+                            htmlFor="countries"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Fakultas
+                        </label>
+                        <select
+                            value={filterKm.faculty}
+                            onChange={(e)=>setFilterKm({...filterKm, 'faculty': e.target.value})}
+                            id="faculty"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value=''>Semua</option>
+                            {
+                                faculty?.map((value)=>(
+                                    <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='flex items-end'>
+                        <Button
+                            variant='primary'
+                            onClick={()=>handleFilterKm(filterKm.university, filterKm.gender, filterKm.faculty)}
+                        >
+                            Filter
+                        </Button>
+                    </div>
+                </div>
+                {
+                    !loadingKm ? <Chart ref={chartRef} type='line' data={chartData} /> :
+                    <Skeleton cols={4} rows={16} />
+                }
+                
             </div>
         </div>
         

@@ -23,7 +23,7 @@ const Table: FC<tableProps> = (props) => {
     const { data} = props;
     const { t } = useTranslation()
     return (
-        <div className="relative overflow-x-auto max-h-100">
+        <div className="w-full">
             {
                 data && data.length > 0 ? data.map((value, index)=>{
                     return(

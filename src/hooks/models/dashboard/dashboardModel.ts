@@ -19,22 +19,37 @@ const getCluster = async () => {
     }
 }
 
-const getTotalPerformance = async () => {
+const getTotalPerformance = async (univ?:string, gender?:string, faculty?:string) => {
     try {
-        const response = await api.get('/dashboard/total-performance');
+        const response = await api.get(`/dashboard/total-performance?`+
+            `university=${univ}&`+
+            `gender=${gender}&`+
+            `faculty=${faculty}`);
         return response.data
     } catch (error) {
         return error as AxiosError
     }
 }
 
-const getKmeans = async () => {
+const getKmeans = async (univ?:string, gender?:string, faculty?:string) => {
     try {
-        const response = await api.get('dashboard/kmeans');
+        const response = await api.get(`dashboard/kmeans?`+
+            `university=${univ}&`+
+            `gender=${gender}&`+
+            `faculty=${faculty}`);
         return response.data
     } catch (error) {
         return error as AxiosError
     }
 }
 
-export { getBobot, getCluster, getTotalPerformance, getKmeans }
+const getMaster = async () => {
+    try {
+        const response = await api.get('dashboard/get-master');
+        return response.data
+    } catch (error) {
+        return error as AxiosError
+    }
+}
+
+export { getBobot, getCluster, getTotalPerformance, getKmeans, getMaster }

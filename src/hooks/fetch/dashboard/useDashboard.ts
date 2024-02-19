@@ -2,13 +2,17 @@ import { useEffect, useState } from "react"
 import { 
     getBobot,
     getCluster,
-    getKmeans, getTotalPerformance } from "../../models/dashboard/dashboardModel"
+    getKmeans,
+    getTotalPerformance,
+    getMaster
+} from "../../models/dashboard/dashboardModel"
 import { 
     BobotInterface, 
     ClusterInterface, 
     KmeansInterface, 
     TotalPerformanceInterface 
 } from "../../../interfaces/dashboardInterface"
+import { DataSelectOptionInterface } from "../../../interfaces/globalInterface"
 
 
 const color = [
@@ -26,9 +30,16 @@ const color = [
     }
 ]
 export const useDashboard = () => {
-    const [bobot, setBobot] = useState<BobotInterface>()
+    const [bobot, setBobot] = useState<BobotInterface>();
     const [cluster, setCluster] = useState<ClusterInterface>();
-    const [totalPerformance, setTotalPerformance] = useState<TotalPerformanceInterface[]>()
+    const [loadingPerformance, setLoadingPerformance] = useState(false)
+    const [totalPerformance, setTotalPerformance] = useState<TotalPerformanceInterface[]>();
+    const [university, setUniversity] = useState<DataSelectOptionInterface[]>();
+    const [gender, setGender] = useState<DataSelectOptionInterface[]>();
+    const [faculty, setFaculty] = useState<DataSelectOptionInterface[]>();
+    const [filter, setFilter] = useState({university: '', gender:'', faculty:''})
+    const [filterKm, setFilterKm] = useState({university: '', gender:'', faculty:''})
+    const [loadingKm, setLoadingKm] = useState(false)
     const [kmeans, setKmeans] = useState<KmeansInterface>({
         labels:['-'],
         datasets: [
@@ -47,13 +58,23 @@ export const useDashboard = () => {
         getDataBobot();
         getDataCluster();
         getPerformance();
-        getDataKmeans()
+        getDataKmeans(filterKm.university, filterKm.gender, filterKm.faculty);
+        getDataMaster();
     }, [])
 
     const getDataBobot = async () => {
         const data = await getBobot();
         if(data.status){
             setBobot(data.data)
+        }
+    }
+
+    const getDataMaster = async () => {
+        const data = await getMaster();
+        if(data.status){
+            setUniversity(data.data.university)
+            setGender(data.data.gender)
+            setFaculty(data.data.faculty)
         }
     }
 
@@ -65,7 +86,8 @@ export const useDashboard = () => {
     }
 
     const getPerformance = async () => {
-        const data = await getTotalPerformance()
+        setLoadingPerformance(true)
+        const data = await getTotalPerformance(filter.university, filter.gender, filter.faculty)
         if(data.status){
             let dataPerformance:TotalPerformanceInterface[]=[]
             for (const key in data.data) {
@@ -77,13 +99,14 @@ export const useDashboard = () => {
                 ]
             }
             setTotalPerformance(dataPerformance)
+            setLoadingPerformance(false)
         }
     }
 
-    const getDataKmeans = async () => {
-        const data = await getKmeans();
+    const getDataKmeans = async (univ:string, gender:string, faculty:string) => {
+        setLoadingKm(true)
+        const data = await getKmeans(univ, gender, faculty);
         if(data.status){
-            // let dataPerformance:KmeansInterface
             const kmeansData = data.data
             let labels:string[]=[]
             let dataSet:{
@@ -101,19 +124,51 @@ export const useDashboard = () => {
                     }
                 ]
             }
-            // console.log({labels});
-            
             setKmeans({
                 labels: labels,
                 datasets: dataSet
             })
+            setLoadingKm(false)
         }
+    }
+
+    const handleFilter = async (univ:string, gender:string, faculty:string) => {
+        setLoadingPerformance(true)
+        const data = await getTotalPerformance(univ, gender, faculty);
+        if(data.status){
+            let dataPerformance:TotalPerformanceInterface[]=[]
+            for (const key in data.data) {
+                dataPerformance=[...dataPerformance,
+                    {
+                        label: key,
+                        value: data.data[key],
+                    }
+                ]
+            }
+            setTotalPerformance(dataPerformance)
+            setLoadingPerformance(false)
+        }
+    }
+
+    const handleFilterKm = async (univ:string, gender:string, faculty:string) => {
+        await getDataKmeans(univ, gender, faculty);
     }
 
     return{
         bobot,
         cluster,
         totalPerformance,
-        kmeans
+        kmeans,
+        university,
+        gender,
+        handleFilter,
+        filter,
+        setFilter,
+        loadingPerformance,
+        faculty,
+        filterKm,
+        setFilterKm,
+        handleFilterKm,
+        loadingKm
     }
 }

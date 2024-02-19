@@ -1,9 +1,14 @@
 import { api } from "../../../services";
 import { AxiosError } from "axios";
 
-const processKMeans = async () => {
+type DataForm = {
+	centroid1: string;
+	centroid2: string;
+	centroid3: string;
+}
+const processKMeans = async (data:DataForm) => {
 	try {
-		const response = await api.get('fuzzy/process-kmeans');
+		const response = await api.get('fuzzy/process-kmeans?', {params: data});
 		return response.data
 	} catch (error) {
 		const err = error as AxiosError
