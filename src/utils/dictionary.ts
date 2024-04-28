@@ -54,7 +54,8 @@ export const Indonesia = {
     'ranking': "Perankingan",
     "questionnaire-respondent": "Kuesioner Responden",
     "performance": "Performance",
-    "calculations": "Perhitungan"
+    "calculations": "Perhitungan",
+    "subVariable": "Sub Variable"
 }
 
 export const English = {
@@ -111,5 +112,6 @@ export const English = {
     "expert-questionnaire": "Expert Questionnaire",
     "gender": "Gender",
     "nik": "NIK /NIP",
-    "fuzzy": "Fuzzy AHP"
+    "fuzzy": "Fuzzy AHP",
+    "subVariable": "Sub Variable"
 }

@@ -19,7 +19,7 @@ const NavBar = () => {
 		navigate('/login')
 	}
 	return (
-		<div className="w-full bg-white sticky top-0 ">
+		<div className="w-full bg-white sticky top-0 z-10">
 			<div className="w-full flex justify-between h-16 items-center px-8">
 				<div className="flex space-x-2 items-center">
 					<div onClick={()=> window.history.back()} className="p-2 rounded-md bg-gray-200 flex items-center justify-center hover:cursor-pointer">

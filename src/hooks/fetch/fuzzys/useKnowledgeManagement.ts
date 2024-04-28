@@ -58,7 +58,7 @@ export const useKnowledgeManagement = () => {
         control,
         name: "indicators"
     });
-      
+    
     const {data:dataKnowledgeManagement, isFetching, refetch} = useQuery<DataKnowledgeManagementInterface>({ 
         queryKey: ['knowledge-management'], 
         networkMode: 'always',

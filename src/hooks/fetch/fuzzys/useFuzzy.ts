@@ -52,7 +52,7 @@ export const useFuzzy = () => {
     } = useForm<FuzzyInterface>({
         resolver: yupResolver(FuzzySchema().schema)
     })
-      
+    
     const {data:dataFuzzy, isFetching, refetch} = useQuery<FuzzyDataTypeInterface>({ 
         queryKey: ['fuzzy'], 
         networkMode: 'always',

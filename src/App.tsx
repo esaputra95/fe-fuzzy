@@ -7,7 +7,8 @@ import { ToastContainer } from 'react-toastify';
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-          refetchOnWindowFocus: true, // default: true
+            refetchOnWindowFocus: false, // default: true
+            networkMode: 'always'
         },
     },
 })

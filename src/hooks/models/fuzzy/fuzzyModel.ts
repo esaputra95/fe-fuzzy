@@ -10,6 +10,8 @@ interface ParamFuzzyInterface extends FuzzySearchInterface {
 
 const getData = async (url:string, params:ParamFuzzyInterface | undefined) => {
 	try {
+		console.log('ayam');
+		
 		if(params?.subVariableId && params.factorId){
 			const response = await api.get(url, { params: { ...params } });
 			if (response.status === 200) return response.data.data;
