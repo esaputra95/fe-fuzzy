@@ -55,12 +55,12 @@ const Table: FC<TableProps> = (props) => {
                                                         }
                                                         {
                                                             index3===0? (
-                                                            <td className="bg-cyan-50 w-4/12 p-4" 
+                                                            <td className="bg-cyan-50 w-4/12 p-4 border-l border-gray-600" 
                                                                 rowSpan={value2.bobot?.length}>
                                                                 {value2.factor.name}
                                                             </td>) : null
                                                         }
-                                                        <td>{value.subVariable?.code+'_'+value2.factor.code+''+value3.label}</td>
+                                                        <td className="border-l border-gray-600">{value2.factor.code+'_'+value.subVariable?.code+''+value3.label}</td>
                                                         <td className="flex text-right justify-end">
                                                             {value3.value}
                                                         </td>

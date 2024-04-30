@@ -39,13 +39,13 @@ const Table: FC<TableProps> = (props) => {
                                 {
                                     value.map((value2, index)=>(
                                         <td className={`p-2 ${(index%2===0?'bg-green-100': 'bg-cyan-50')}`}>
-                                                {
-                                                    value2.value
-                                                }
-                                            </td>
+                                            {
+                                                value2.value
+                                            }
+                                        </td>
                                     ))
                                 }
-                                        </tr>
+                                </tr>
                             </Fragment>
                         )) : null
                     }
