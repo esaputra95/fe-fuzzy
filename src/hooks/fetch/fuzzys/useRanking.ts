@@ -12,12 +12,8 @@ export const useRanking = () => {
     })
 
     const onSearch = async () => {
-        console.log('data');
-        
         mutate()
     }
-
-console.log({data});
     
     return {
         data,

@@ -1,5 +1,4 @@
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
-import { DataForm, DataFormExpertQuestionnaireInterface } from "../expertQuestionnaireInterface";
 
 export interface FactorInterface {
     id?: number;
@@ -21,16 +20,15 @@ export type FactorFormProps = {
     errors: FieldErrors<FactorInterface>;
     isLoading?: boolean;
     idDetail?: number | null;
-    dataForm: DataForm[] | undefined
 }
 
 interface Info {
     page: number;
     limit: number;
     total: number;
-  }
-  
+}
+
 export interface ClassDataTypeInterface {
     Factor: FactorInterface[];
     info: Info;
-  }
+}

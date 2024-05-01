@@ -73,7 +73,7 @@ const Table: FC<tableProps> = (props) => {
                                                 <>
                                                     <td className="px-2 py-2">Indicator</td>
                                                     {
-                                                        valueData.map((value, index)=> (
+                                                        valueData.map((_value, index)=> (
                                                             <td className="px-2 py-2 bg-gray-100">
                                                                 {factor?.code+'_'+subVariable?.code+''+(index+1)} 
                                                             </td>
@@ -121,7 +121,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueMultiplication.map((value, index)=> (
+                                                valueMultiplication.map((_value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
                                                         {factor?.code+'_'+subVariable?.code+''+(index+1)} 
                                                     </td>
@@ -164,7 +164,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueSquaredRootOf.map((value, index)=> (
+                                                valueSquaredRootOf.map((_value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
                                                         {factor?.code+'_'+subVariable?.code+''+(index+1)} 
                                                     </td>
@@ -214,7 +214,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueEigenVector.map((value, index)=> (
+                                                valueEigenVector.map((_value, index)=> (
                                                     <>
                                                         {
                                                             index !== (eigenVector.length-1) ? (
@@ -239,13 +239,13 @@ const Table: FC<tableProps> = (props) => {
                                             valueEigenVector.map((valueTd, index2)=> (
                                                 <>
                                                     {
-                                                        index2===0 && index !== valueEigenVector.length ? 
+                                                        index2===0 && (index+1) !== valueEigenVector.length ? 
                                                         (<td className="px-2 py-2 bg-gray-100">
-                                                            {factor?.code+'_'+subVariable?.code+''+(index+1)} 
+                                                            {factor?.code+'_'+subVariable?.code+''+(index+1)}
                                                         </td>) : null
                                                     }
                                                     {
-                                                        index2===0 && index === valueEigenVector.length ? 
+                                                        index2===0 && (index+1) === valueEigenVector.length ? 
                                                         (<td className="px-2 py-2 bg-gray-100">
                                                             Total 
                                                         </td>) : null
@@ -275,7 +275,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueLamda.map((value, index)=> (
+                                                valueLamda.map((_value, index)=> (
                                                     <>
                                                         {
                                                             index <= (valueLamda.length-3) ? (
@@ -373,7 +373,7 @@ const Table: FC<tableProps> = (props) => {
                                                         <tr>
                                                             <td >Indikator</td>
                                                         {
-                                                            valueData.map((value, index)=> (
+                                                            valueData.map((_value, index)=> (
                                                                 <td className="px-2 py-2 bg-gray-100">
                                                                     {factor?.code+'_'+subVariable?.code+''+(Math.ceil((index+1)/3))} 
                                                                 </td>
@@ -383,7 +383,7 @@ const Table: FC<tableProps> = (props) => {
                                                         <tr>
                                                             <td></td>
                                                         {
-                                                            valueData.map((value, indexData)=> (
+                                                            valueData.map((_value, indexData)=> (
                                                                 <>
                                                                     {
                                                                         (indexData+1)%3===1 ? (
@@ -446,7 +446,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueMultiplication.map((value, index)=> (
+                                                valueMultiplication.map((_value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
                                                         {factor?.code+'_'+subVariable?.code+''+(Math.ceil((index+1)/3))} 
                                                     </td>
@@ -456,7 +456,7 @@ const Table: FC<tableProps> = (props) => {
                                             <tr>
                                                 <td></td>
                                                 {
-                                                    valueMultiplication.map((value, indexData)=> (
+                                                    valueMultiplication.map((_value, indexData)=> (
                                                         <>
                                                             {
                                                                 (indexData+1)%3===1 ? (
@@ -514,7 +514,7 @@ const Table: FC<tableProps> = (props) => {
                                         <>
                                             <td className="px-2 py-2">Indicator</td>
                                             {
-                                                valueSquaredRootOf.map((value, index)=> (
+                                                valueSquaredRootOf.map((_value, index)=> (
                                                     <td className="px-2 py-2 bg-gray-100">
                                                         {factor?.code+'_'+subVariable?.code+''+(Math.ceil((index+1)/3))}
                                                     </td>
@@ -524,7 +524,7 @@ const Table: FC<tableProps> = (props) => {
                                             <tr>
                                                 <td></td>
                                                 {
-                                                    valueSquaredRootOf.map((value, indexData)=> (
+                                                    valueSquaredRootOf.map((_value, indexData)=> (
                                                         <>
                                                             {
                                                                 (indexData+1)%3===1 ? (

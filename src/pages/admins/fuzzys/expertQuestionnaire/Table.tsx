@@ -1,6 +1,5 @@
-import { BsEyeFill, BsFillTrashFill, BsPencilFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import { FC } from "react";
-import { FactorInterface } from "../../../../interfaces/master/factorInterface";
 import { useTranslation } from "react-i18next";
 import Skeleton from "../../../../components/ui/Skeleton";
 import { ExpertQuestionnaireInterface } from "../../../../interfaces/expertQuestionnaireInterface";
@@ -36,7 +35,7 @@ const header = [
 const Table: FC<tableProps> = (props) => {
     const { data, isFetching, page, limit, onDelete } = props;
     const { t } = useTranslation()
-    let number:number = ((page-1)*limit)
+    const number:number = ((page-1)*limit)
     return (
         <div className="relative overflow-x-auto max-h-96">
             <table className="w-full text-sm text-left text-gray-900 dark:text-gray-400">

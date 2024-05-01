@@ -4,11 +4,11 @@ import { SubVariableInterface } from "./master/subVariableInterface";
 
 export interface QuestionnaireInterface {
     name: string;
-    questionary: ScalaInterface[]
+    questionary?: ScalaInterface[]
 }
 
 export interface QuestionnaireDataInterface {
-    name?: string;
+    name: string;
     gender?: string;
     group?: string;
     lastStudy?: string;

@@ -43,7 +43,7 @@ const FactorPage = () => {
                     idDetail={idDetail}
                     handleSubmit={handleSubmit}
                     register={register}
-                    onSubmit={onSubmit}
+                    onSubmit={onSubmit} 
                 />
             </ModalForm>
             <div className='w-full'>
