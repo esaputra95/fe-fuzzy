@@ -5,7 +5,8 @@ const FuzzySchema = () => {
     const {t} = useTranslation()
     const schema = yup.object({
         subVariableId: yup.number().required(`${t("subVariable")} ${t("required")}`),
-        factorId: yup.number().required(`${t("factor")} ${t("required")}`)
+        factorId: yup.number().required(`${t("factor")} ${t("required")}`),
+        university: yup.string().optional()
     });
 
     return {

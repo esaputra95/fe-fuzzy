@@ -23,7 +23,7 @@ const FuzzyPage = () => {
         handleChangeSelect,
         optionFactor,
         onSearchFactor,
-        selectFactor
+        selectFactor,
     } = useFuzzy()
 
     return (

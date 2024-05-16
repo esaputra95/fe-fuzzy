@@ -14,12 +14,16 @@ import usePage from "../../../utils/pageState"
 import { useSubVariable } from "../master/useSubVariable"
 import { useFactor } from "../master/useFactor"
 import FuzzySchema from "../../../schema/fuzzySchema"
+import { getMaster } from "../../models/dashboard/dashboardModel"
+import { DataSelectOptionInterface } from "../../../interfaces/globalInterface"
 
 export const useFuzzy = () => {
     const [ query, setQuery ] = useState<FuzzyInterface>()
     const [ idDetail, setIdDetail ] = useState<number | null>()
     const [ selectSubVariable, setSelectSubVariable ] = useState({label:'', value:''})
     const [ selectFactor, setSelectFactor ] = useState({label:'', value:''})
+    const [ selectUniversity, setSelectUniversity ] = useState({label:'', value:''})
+    const [ university, setUniversity ] = useState<DataSelectOptionInterface[]>([{value:'', label:''}]);
     const { Fuzzy } = url
     const { modalForm, setModalForm } = modalFormState()
     const { t } = useTranslation();
@@ -40,7 +44,8 @@ export const useFuzzy = () => {
         setModalForm((state)=>({
             ...state,
             label: 'Form '
-        }))
+        }));
+        getDataMaster();
     }, [])
 
     const {
@@ -54,17 +59,13 @@ export const useFuzzy = () => {
     })
     
     const {data:dataFuzzy, isFetching, refetch} = useQuery<FuzzyDataTypeInterface>({ 
-        queryKey: ['fuzzy'], 
+        queryKey: ['fuzzy', query], 
         networkMode: 'always',
         queryFn: async () => await getData(Fuzzy.get, query),
         onSuccess(data) {
             page.setTotal(Math.ceil((data?.info?.total  ?? 1)/(data?.info?.limit ?? page.limit)))
         },
     })
-
-    useEffect(()=> {
-        refetch()
-    }, [query])
 
     const { mutate:mutateById } = useMutation({
         mutationFn: (id:number) => getDataById(Fuzzy.getById, id),
@@ -148,7 +149,15 @@ export const useFuzzy = () => {
         setValue(key, event.value)
         if(key==="subVariableId") setSelectSubVariable(event)
         if(key==="factorId") setSelectFactor(event)
+        if(key==="university") setSelectUniversity(event)
     };
+
+    const getDataMaster = async () => {
+        const data = await getMaster();
+        if(data.status){
+            setUniversity(data.data.university)
+        }
+    }
 
     return {
         dataFuzzy,
@@ -174,6 +183,8 @@ export const useFuzzy = () => {
         handleChangeSelect,
         optionFactor,
         onSearchFactor,
-        selectFactor
+        selectFactor,
+        university,
+        selectUniversity
     }
 }

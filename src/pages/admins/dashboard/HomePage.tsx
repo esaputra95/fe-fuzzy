@@ -92,11 +92,11 @@ const HomePage = () => {
     const dataBobot = {
         labels: bobot?.label,
         datasets: [
-          {
-            label: 'Indikator',
-            data: bobot?.label.map((key) => bobot.bobot[key]),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          },
+            {
+                label: 'Indikator',
+                data: bobot?.label.map((key) => bobot.bobot[key]),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
         ],
     };
 

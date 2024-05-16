@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { 
     downloadFile, processKMeans, processDownload, getCentroid } from './../../models/kmean/kmeanModel'
 import { SheetData } from "../../../interfaces/fuzzyInterface";
+import { DataSelectOptionInterface } from "../../../interfaces/globalInterface";
+import { getMaster } from "../../models/dashboard/dashboardModel";
 
 interface Data {
     header: string[],
     dataBody: number[][]
 }
 export const useKMeans = () => {
+    const [ selectUniversity, setSelectUniversity ] = useState('')
+    const [ university, setUniversity ] = useState<DataSelectOptionInterface[]>([{value:'', label:''}]);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<SheetData[]>();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [dataCentroid, setDataCentroid] = useState<Data>()
-    const [form, setForm] = useState({centroid1:'1', centroid2:'59', centroid3:'168'});
+    const [form, setForm] = useState({centroid1:'1', centroid2:'59', centroid3:'168', university:''});
+
+    useEffect(()=> {
+        getDataMaster()
+    }, [])
+
     const handleOnProcessKMeans = async () => {
         setLoading(state=> !state)
         const process = await processKMeans(form);
@@ -51,6 +60,13 @@ export const useKMeans = () => {
         }
     }
 
+    const getDataMaster = async () => {
+        const data = await getMaster();
+        if(data.status){
+            setUniversity(data.data.university)
+        }
+    }
+
     return {
         handleOnProcessKMeans,
         loading,
@@ -58,6 +74,9 @@ export const useKMeans = () => {
         handleDownload,
         dataCentroid,
         form,
-        setForm
+        setForm,
+        university,
+        selectUniversity,
+        setSelectUniversity
     }
 }

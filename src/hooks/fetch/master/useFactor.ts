@@ -41,7 +41,7 @@ export const useFactor = () => {
     } = useForm<FactorInterface>({
         resolver: yupResolver(FactorSchema().schema)
     })
-      
+    
     const {data:dataFactor, isFetching, refetch} = useQuery({ 
         queryKey: ['variables'], 
         networkMode: 'always',

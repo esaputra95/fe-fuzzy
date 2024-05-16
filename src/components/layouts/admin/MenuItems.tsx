@@ -14,17 +14,17 @@ export const MasterMenu = [
         path: 'sub-variable',
         active: false,
     },
-    {
-        label: 'indicator',
-        path: 'indicator',
-        active: false,
-    },
+    // {
+    //     label: 'indicator',
+    //     path: 'indicator',
+    //     active: false,
+    // },
 ];
 
 export const KnowledgeManagement = [
     {
-        label: 'knowledge-management',
-        path: 'knowledge-management',
+        label: 'indicator',
+        path: 'indicator',
         active: false,
     },
     

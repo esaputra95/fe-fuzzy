@@ -12,7 +12,7 @@ const getData = async (url:string, params:ParamFuzzyInterface | undefined) => {
 	try {
 		console.log('ayam');
 		
-		if(params?.subVariableId && params.factorId){
+		if(params?.subVariableId && params.factorId && params.university){
 			const response = await api.get(url, { params: { ...params } });
 			if (response.status === 200) return response.data.data;
 			throw new Error(`Request failed with status ${response.status}`);

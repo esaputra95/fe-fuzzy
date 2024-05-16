@@ -7,7 +7,7 @@ import {
     VariablePage,
     SubVariablePage,
     FactorPage,
-    IndicatorPage
+    // IndicatorPage
 } from "../pages/admins/masters";
 import { 
     RankingPage,
@@ -51,12 +51,12 @@ const MainRouters = [
                 path: 'factor',
                 element: <FactorPage />
             },
+            // {
+            //     path: 'indicator',
+            //     element: <IndicatorPage />
+            // },
             {
                 path: 'indicator',
-                element: <IndicatorPage />
-            },
-            {
-                path: 'knowledge-management',
                 element: <KnowledgeManagementPage />
             },
             {

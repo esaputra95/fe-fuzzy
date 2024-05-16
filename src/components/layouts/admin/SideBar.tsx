@@ -110,11 +110,11 @@ const SideBarLayout = () => {
 					</AccordionBody>
 				</Accordion>
 				<hr className="my-2 border-blue-gray-50" />
-				<ListItem onClick={()=> handleOnClickMenu('knowledge-management')}>
+				<ListItem onClick={()=> handleOnClickMenu('indicator')}>
 					<ListItemPrefix>
 						<DocumentTextIcon className="h-5 w-5" />
 					</ListItemPrefix>
-					{t("knowledge-management")}
+					{t("indicator")}
 				</ListItem>
 				<ListItem onClick={()=> handleOnClickMenu('expert-questionnaire')}>
 					<ListItemPrefix>

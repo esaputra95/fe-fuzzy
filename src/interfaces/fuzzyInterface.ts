@@ -6,12 +6,14 @@ import { FactorInterface } from "./master/factorInterface";
 
 export interface FuzzyInterface {
     subVariableId: number,
-    factorId: number
+    factorId: number,
+    university?: string;
 }
 
 export interface FuzzySearchInterface {
     subVariableId: number,
-    factorId: number
+    factorId: number,
+    university?: string;
 }
 
 export type FuzzyFormProps = {
