@@ -61,7 +61,7 @@ const SideBarLayout = () => {
 		>
 			<div className="mb-2 p-4 bg-white">
 				<Typography className='font-bold' variant="h6" color="blue-gray">
-					PERFORMANCE ACADEMIC
+					Model BIS-KMP
 				</Typography>
 			</div>
 			<List>

@@ -10,7 +10,7 @@ export interface QuestionnaireInterface {
 export interface QuestionnaireDataInterface {
     name: string;
     gender?: string;
-    group?: string;
+    golongan?: string;
     lastStudy?: string;
     skill?: string;
     status?: string;

@@ -1,9 +1,10 @@
 import { FC, Fragment } from "react";
-import { SheetData } from "../../../../interfaces/fuzzyInterface";
+import { DataPoint, SheetData } from "../../../../interfaces/fuzzyInterface";
 import { useTranslation } from "react-i18next";
 
 type tableProps = {
-    data?: SheetData[]
+    data?: SheetData[];
+    centroid?: DataPoint[];
 }
 
 const header = [
@@ -20,7 +21,7 @@ const header = [
 ] 
 
 const Table: FC<tableProps> = (props) => {
-    const { data} = props;
+    const { data, centroid } = props;
     const { t } = useTranslation()
     return (
         <div className="w-full">
@@ -77,6 +78,18 @@ const Table: FC<tableProps> = (props) => {
                                             }
                                             </tbody>
                                         </table>
+                                        <div>
+                                            <span>
+                                            {
+                                                (data.length-2) === index ? 'Iterasi berakhir pada iterasi ke '+(index+1) : ''
+                                            }
+                                            </span>
+                                            <div  className="w-full grid grid-cols-3 mb-12">
+                                                <span className="font-semibold">C1: {centroid?.[index].c1}</span>
+                                                <span className="font-semibold">C2: {centroid?.[index].c2}</span>
+                                                <span className="font-semibold">C3: {centroid?.[index].c3}</span>
+                                            </div>
+                                        </div>
                                     </Fragment>
                                 ) : null
                             }

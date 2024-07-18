@@ -15,7 +15,9 @@ const KMeansPage = () => {
         dataCentroid,
         university,
         selectUniversity,
-        setSelectUniversity
+        setSelectUniversity,
+        randomCentroid,
+        dataCtr
     } = useKMeans()
 
     return (
@@ -71,6 +73,7 @@ const KMeansPage = () => {
                         />
                     </div>
                 </div>
+                <Button className='' onClick={()=> randomCentroid()}>Acak Nilai Centroid</Button>
                 <div className='w-full my-4'>
                     <label
                         htmlFor="countries"
@@ -115,7 +118,7 @@ const KMeansPage = () => {
                     <table className="w-full overflow-auto text-sm text-left rtl:text-right text-gray-900 dark:text-gray-400">
                         <thead className="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th className='px-2 py-2'>No</th>
+                                <th className='px-2 py-2'>Centroid</th>
                                 {
                                     dataCentroid?.header?.map((value:string)=>
                                     (
@@ -150,6 +153,7 @@ const KMeansPage = () => {
                 </div>
                 <Table
                     data={data}
+                    centroid={dataCtr}
                 />
             </div>
         </div>

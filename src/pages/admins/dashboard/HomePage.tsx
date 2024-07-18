@@ -39,6 +39,25 @@ export const options = {
     },
 };
 
+const colors = [
+    {
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+    },
+    {
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    }, 
+    {
+        borderColor: 'rgba(153, 102, 255, 1)',
+        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+    }
+]
+
+function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+  }
+
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
@@ -95,7 +114,7 @@ const HomePage = () => {
             {
                 label: 'Indikator',
                 data: bobot?.label.map((key) => bobot.bobot[key]),
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: colors[getRandomInt(3)].backgroundColor,
             },
         ],
     };
@@ -103,11 +122,11 @@ const HomePage = () => {
     const dataPerformance = {
         labels: totalPerformance?.map((value) => value.label),
         datasets: [
-          {
-            label: 'Indikator',
-            data: totalPerformance?.map((value) => value.value ),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          },
+            {
+                label: 'Indikator',
+                data: totalPerformance?.map((value) => value.value ),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
         ],
     };
 

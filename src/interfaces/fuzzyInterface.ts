@@ -7,7 +7,6 @@ import { FactorInterface } from "./master/factorInterface";
 export interface FuzzyInterface {
     subVariableId: number,
     factorId: number,
-    university?: string;
 }
 
 export interface FuzzySearchInterface {
@@ -73,12 +72,18 @@ export type SheetData = {
     columns: Column[];
     content: Content[];
 };
-  
+
 type Column = {
     label: string;
     value: string;
 };
-  
+
+export interface DataPoint {
+    c1: number;
+    c2: number;
+    c3: number;
+}
+
 type Content = {
     JC1: number;
     JC2: number;

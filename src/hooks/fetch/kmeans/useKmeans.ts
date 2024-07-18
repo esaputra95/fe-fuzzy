@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { 
     downloadFile, processKMeans, processDownload, getCentroid } from './../../models/kmean/kmeanModel'
-import { SheetData } from "../../../interfaces/fuzzyInterface";
+import { DataPoint, SheetData } from "../../../interfaces/fuzzyInterface";
 import { DataSelectOptionInterface } from "../../../interfaces/globalInterface";
 import { getMaster } from "../../models/dashboard/dashboardModel";
 
@@ -14,6 +14,7 @@ export const useKMeans = () => {
     const [ university, setUniversity ] = useState<DataSelectOptionInterface[]>([{value:'', label:''}]);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<SheetData[]>();
+    const [dataCtr, setDataCtr] = useState<DataPoint[]>();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [dataCentroid, setDataCentroid] = useState<Data>()
     const [form, setForm] = useState({centroid1:'1', centroid2:'59', centroid3:'168', university:''});
@@ -26,7 +27,8 @@ export const useKMeans = () => {
         setLoading(state=> !state)
         const process = await processKMeans(form);
         handleCentroid()
-        setData(process.data)
+        setData(process.data);
+        setDataCtr(process.centroid);
         setLoading(false)
     }
 
@@ -54,7 +56,6 @@ export const useKMeans = () => {
                 }
                 dataBody=[...dataBody, tmpDataBody]
             }
-            console.log({dataBody});
             
             setDataCentroid({header:header, dataBody:dataBody})
         }
@@ -67,6 +68,15 @@ export const useKMeans = () => {
         }
     }
 
+    const randomCentroid = () => {
+        setForm((state)=>({
+            ...state,
+            centroid1: (Math.floor(Math.random() * 150)).toString(),
+            centroid2: (Math.floor(Math.random() * 150)).toString(),
+            centroid3: (Math.floor(Math.random() * 150)).toString(),
+        }))
+    }
+
     return {
         handleOnProcessKMeans,
         loading,
@@ -77,6 +87,8 @@ export const useKMeans = () => {
         setForm,
         university,
         selectUniversity,
-        setSelectUniversity
+        setSelectUniversity,
+        randomCentroid,
+        dataCtr
     }
 }

@@ -58,7 +58,7 @@ const Table: FC<TableProps> = (props) => {
                                     </td>
                                     <td className="p-4">
                                         {
-                                            value.group ?? ''
+                                            value.golongan ?? ''
                                         }
                                     </td>
                                     <td className="p-4">

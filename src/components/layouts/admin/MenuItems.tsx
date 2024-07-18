@@ -5,7 +5,7 @@ export const MasterMenu = [
         active: false,
     },
     {
-        label: 'variable',
+        label: 'Konstrak',
         path: 'variable',
         active: false,
     },
