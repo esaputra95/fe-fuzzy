@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface ClusteringMetrics {
     numberOfClusters: number; // Jumlah cluster
     inertia: number; // Inertia (Elbow)

@@ -56,7 +56,7 @@ export const Indonesia = {
     "performance": "Performance",
     "calculations": "Perhitungan",
     "subVariable": "Sub Variable",
-    "testing": "Hasil Pengujian"
+    "testing": "Hasil Evaluasi Klaster"
 }
 
 export const English = {

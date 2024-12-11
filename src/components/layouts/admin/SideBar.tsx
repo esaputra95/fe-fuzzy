@@ -171,7 +171,7 @@ const SideBarLayout = () => {
 					<ListItemPrefix>
 						<Cog6ToothIcon className="h-5 w-5" />
 					</ListItemPrefix>
-					{t("Hasil Pengujian")}
+					{t("Hasil Evaluasi Klaster")}
 				</ListItem>
 			</List>
 		</Card>
