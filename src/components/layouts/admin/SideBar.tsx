@@ -164,6 +164,15 @@ const SideBarLayout = () => {
 					</ListItemPrefix>
 					{t("Perhitungan")}
 				</ListItem>
+				<ListItem 
+					selected={selector.menu === 'testing' ? true : false} 
+					onClick={()=> handleOnClickMenu("testing")}
+				>
+					<ListItemPrefix>
+						<Cog6ToothIcon className="h-5 w-5" />
+					</ListItemPrefix>
+					{t("Hasil Pengujian")}
+				</ListItem>
 			</List>
 		</Card>
     )

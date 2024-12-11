@@ -18,6 +18,7 @@ import {
     QuestionnairePage
 } from "../pages/admins/fuzzys";
 import { CalculationsPage, KMeansPage } from "../pages/admins/kmeans";
+import TestingPage from "../pages/admins/pengujian";
 const MainRouters = [
     {
         path: '/',
@@ -86,6 +87,10 @@ const MainRouters = [
             {
                 path: 'calculations',
                 element: <CalculationsPage />
+            },
+            {
+                path: 'testing',
+                element: <TestingPage />
             }
         ], 
     }

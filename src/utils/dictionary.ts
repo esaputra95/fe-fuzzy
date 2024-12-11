@@ -55,7 +55,8 @@ export const Indonesia = {
     "questionnaire-respondent": "Kuesioner Responden",
     "performance": "Performance",
     "calculations": "Perhitungan",
-    "subVariable": "Sub Variable"
+    "subVariable": "Sub Variable",
+    "testing": "Hasil Pengujian"
 }
 
 export const English = {
