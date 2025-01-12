@@ -43,7 +43,7 @@ const Table: FC<TableProps> = (props) => {
                         </tr>
                     </thead>
                     {
-                        data?.map((value)=>(
+                        data && data?.length > 0 && data?.map((value)=>(
                             <Fragment key={Math.random().toString(5)}>
                                 <tr className="bg-white p-4 border-y dark:bg-gray-800 dark:border-gray-700">
                                     <td className="p-4">
