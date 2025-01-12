@@ -23,7 +23,7 @@ const Table: FC<TableProps> = (props) => {
                     <thead>
                         <tr className="">
                             <th className="p-4">
-                                Nama
+                                Kode
                             </th>
                             <th className="p-4">
                                 Jenis Kelamin
