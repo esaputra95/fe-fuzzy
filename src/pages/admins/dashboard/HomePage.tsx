@@ -112,7 +112,7 @@ const HomePage = () => {
         labels: bobot?.label,
         datasets: [
             {
-                label: 'Indikator',
+                label: 'Sub Variabel',
                 data: bobot?.label.map((key) => bobot.bobot[key]),
                 backgroundColor: colors[getRandomInt(3)].backgroundColor,
             },
@@ -123,7 +123,7 @@ const HomePage = () => {
         labels: totalPerformance?.map((value) => value.label),
         datasets: [
             {
-                label: 'Indikator',
+                label: 'Sub Variabel',
                 data: totalPerformance?.map((value) => value.value ),
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },

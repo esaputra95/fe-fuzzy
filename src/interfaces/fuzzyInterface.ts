@@ -84,7 +84,7 @@ export interface DataPoint {
     c3: number;
 }
 
-type Content = {
+export type Content = {
     JC1: number;
     JC2: number;
     JC3: number;

@@ -1,6 +1,7 @@
-import { FC, Fragment } from "react";
-import { DataPoint, SheetData } from "../../../../interfaces/fuzzyInterface";
+import { FC, Fragment, useState } from "react";
+import { Content, DataPoint, SheetData } from "../../../../interfaces/fuzzyInterface";
 import { useTranslation } from "react-i18next";
+import { Button } from "../../../../components/input";
 
 type tableProps = {
     data?: SheetData[];
@@ -23,6 +24,16 @@ const header = [
 const Table: FC<tableProps> = (props) => {
     const { data, centroid } = props;
     const { t } = useTranslation()
+    const [dataFilter, setDataFilter] = useState<Content[]>()
+
+    const filterData = (val:string) => {
+        const length = data?.length ? data.length-2 : 0
+        console.log({length});
+        
+        const filter = data?.[length].content.filter((d)=> d.cluster===val);
+        setDataFilter(filter);
+        
+    }
     return (
         <div className="w-full">
             {
@@ -83,23 +94,55 @@ const Table: FC<tableProps> = (props) => {
                                             {
                                                 (data.length-2) === index ? 'Iterasi berakhir pada iterasi ke '+(index+1) : ''
                                             }
+                                            {
+                                                (data.length-2) === index ? (
+                                                    <div  className="w-full grid grid-cols-3 mb-12">
+                                                        <div>
+                                                            <Button onClick={()=> filterData('C1')}>C1: {centroid?.[index].c1}</Button>
+                                                        </div>
+                                                        <div>
+                                                            <Button onClick={()=> filterData('C2')}>C2: {centroid?.[index].c2}</Button>
+                                                        </div>
+                                                        <div>
+                                                            <Button onClick={()=> filterData('C3')}>C3: {centroid?.[index].c3}</Button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div  className="w-full grid grid-cols-3 mb-12">
+                                                        <div>
+                                                            <span>C1: {centroid?.[index].c1}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span>C2: {centroid?.[index].c2}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span>C3: {centroid?.[index].c3}</span>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
                                             </span>
-                                            <div  className="w-full grid grid-cols-3 mb-12">
-                                                <span className="font-semibold">C1: {centroid?.[index].c1}</span>
-                                                <span className="font-semibold">C2: {centroid?.[index].c2}</span>
-                                                <span className="font-semibold">C3: {centroid?.[index].c3}</span>
-                                            </div>
+                                            
                                         </div>
                                     </Fragment>
                                 ) : null
                             }
-                            
-                            
-        
                         </Fragment>
                     )
                 }) : null
             }
+            <div className="w-full">
+                <table>
+                {
+                    dataFilter && dataFilter.length > 0 && 
+                    dataFilter.map((v)=> (
+                        <tr>
+                            <td>{v.cluster}</td>
+                        </tr>
+                    ))
+                }
+                </table>
+            </div>
         </div>
     )
 }
