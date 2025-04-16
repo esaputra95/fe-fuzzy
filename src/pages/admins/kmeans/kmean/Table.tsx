@@ -2,6 +2,7 @@ import { FC, Fragment, useState } from "react";
 import { Content, DataPoint, SheetData } from "../../../../interfaces/fuzzyInterface";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../../components/input";
+import ModalForm from "../../../../components/ui/modal/ModalForm";
 
 type tableProps = {
     data?: SheetData[];
@@ -24,12 +25,14 @@ const header = [
 const Table: FC<tableProps> = (props) => {
     const { data, centroid } = props;
     const { t } = useTranslation()
+    const [filter, setFilter] = useState<string>()
     const [dataFilter, setDataFilter] = useState<Content[]>()
 
     const filterData = (val:string) => {
         const length = data?.length ? data.length-2 : 0
-        console.log({length});
+        console.log({val});
         
+        setFilter(val)
         const filter = data?.[length].content.filter((d)=> d.cluster===val);
         setDataFilter(filter);
         
@@ -131,18 +134,17 @@ const Table: FC<tableProps> = (props) => {
                     )
                 }) : null
             }
-            <div className="w-full">
-                <table>
-                {
-                    dataFilter && dataFilter.length > 0 && 
-                    dataFilter.map((v)=> (
-                        <tr>
-                            <td>{v.cluster}</td>
-                        </tr>
-                    ))
-                }
-                </table>
-            </div>
+            <ModalForm pathName={false} onClose={()=>setDataFilter([])} title={`Dara Dosen Centroid ${filter}`} visible={Boolean(dataFilter?.length)}>
+                <div className="w-full grid grid-cols-2 gap-2">
+                    {
+                        dataFilter && dataFilter.length > 0 && 
+                        dataFilter.map((v)=> (
+                            <div>{v.code}</div>
+                        ))
+                    }
+                </div>
+            </ModalForm>
+            
         </div>
     )
 }

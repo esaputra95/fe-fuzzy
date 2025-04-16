@@ -32,6 +32,7 @@ export interface ModalProps
         visible: boolean;
         children: ReactNode;
         onClose ?: ()=> void;
+        pathName?: boolean
     }
 
 const ModalForm: FC<ModalProps> = ({
@@ -41,6 +42,7 @@ const ModalForm: FC<ModalProps> = ({
     visible,
     children,
     onClose,
+    pathName=true,
     ...props
 }) => {
     return (
@@ -57,7 +59,7 @@ const ModalForm: FC<ModalProps> = ({
                 {/* Modal header */}
                 <div className="flex items-start overflow-auto justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {title} {locatioanName().pathName}
+                        {title} { pathName && locatioanName().pathName}
                     </h3>
                     <button
                         type="button"

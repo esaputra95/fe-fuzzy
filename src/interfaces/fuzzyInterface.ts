@@ -89,5 +89,6 @@ export type Content = {
     JC2: number;
     JC3: number;
     min: number;
-    cluster: string; // Anda perlu menambahkan tipe yang sesuai untuk properti "cluster"
+    cluster: string;
+    code: string;
 };
