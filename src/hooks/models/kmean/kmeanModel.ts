@@ -51,4 +51,13 @@ const getCentroid = async () => {
 	}
 }
 
-export { processKMeans, downloadFile, processDownload, getCentroid };
+const getRecommendation = async (type:string)=> {
+	try {
+		const response = await api.get(`fuzzy/recommendation?type=${type}`);
+		return response.data;
+	} catch (error) {
+		return error as AxiosError
+	}
+}
+
+export { processKMeans, downloadFile, processDownload, getCentroid, getRecommendation };

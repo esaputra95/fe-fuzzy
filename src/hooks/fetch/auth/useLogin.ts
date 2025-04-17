@@ -14,6 +14,7 @@ export const useLogin = () => {
     const { 
         register, 
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm<LoginInterface>({
         resolver: yupResolver(LoginSchema().schema)
@@ -23,7 +24,6 @@ export const useLogin = () => {
         mutationKey: ['login'],
         mutationFn: async (data:LoginInterface) => await login(auth.login, data),
         onSuccess: (response)=> {
-            console.log({response});
             
             if(!response.status) throw response;
             window.localStorage.setItem('token', response.data.token)
@@ -44,6 +44,7 @@ export const useLogin = () => {
         handleSubmit,
         onSubmit,
         errors,
-        isError
+        isError,
+        setValue
     }
 }

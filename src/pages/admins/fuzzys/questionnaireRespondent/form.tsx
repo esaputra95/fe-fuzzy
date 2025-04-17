@@ -3,7 +3,6 @@ import { Button, InputText, InputTextArray, SelectOption } from "../../../../com
 import { useQuestionnaireForm } from "../../../../hooks/fetch/fuzzys/useQuestionnaireForm"
 import InputRadio from "../../../../components/input/InputRadio";
 
-
 const FormQuestionnaire = () => {
     const {
         register,
@@ -17,6 +16,7 @@ const FormQuestionnaire = () => {
         <div className="w-full p-4 md:p-16 xl:p-16 lg:p-16">
             <div className="w-full">
                 <label className="font-bold text-lg">IDENTITTAS RESPONDENT</label>
+                <a href='/login' ><label className="font-semibold text-sm ml-2 text-light-blue-800 hover:cursor-pointer">Login untuk masuk ke aplikasi</label></a>
             </div>
             <div className="w-full">
                 <label className="font-normal text-base">

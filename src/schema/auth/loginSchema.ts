@@ -5,7 +5,8 @@ const LoginSchema = () => {
     const {t} = useTranslation()
     const schema = yup.object({
         username: yup.string().required(`${t("username")} ${t("required")}`),
-        password: yup.string().required(`${t("password")} ${t("required")}`)
+        password: yup.string().required(`${t("password")} ${t("required")}`),
+        type: yup.boolean()
     });
 
     return {

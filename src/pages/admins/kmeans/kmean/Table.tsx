@@ -3,6 +3,7 @@ import { Content, DataPoint, SheetData } from "../../../../interfaces/fuzzyInter
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../../components/input";
 import ModalForm from "../../../../components/ui/modal/ModalForm";
+import { getRecommendation } from "../../../../hooks/models/kmean/kmeanModel";
 
 type tableProps = {
     data?: SheetData[];
@@ -27,6 +28,10 @@ const Table: FC<tableProps> = (props) => {
     const { t } = useTranslation()
     const [filter, setFilter] = useState<string>()
     const [dataFilter, setDataFilter] = useState<Content[]>()
+    const [dataRekom, setDataRekom]= useState<{label: string;
+        variabel: string;
+        type: 'Rendah' | 'Sedang' | 'Tinggi'; // Jika hanya 3 pilihan, bisa di-restrict
+        rekomendasi: string;}[]>([])
 
     const filterData = (val:string) => {
         const length = data?.length ? data.length-2 : 0
@@ -35,7 +40,19 @@ const Table: FC<tableProps> = (props) => {
         setFilter(val)
         const filter = data?.[length].content.filter((d)=> d.cluster===val);
         setDataFilter(filter);
-        
+    }
+
+    const showRecommendation = async (filter?:string) => {
+        if(filter){
+            const response:{status:boolean, data:{label: string;
+                variabel: string;
+                type: 'Rendah' | 'Sedang' | 'Tinggi'; // Jika hanya 3 pilihan, bisa di-restrict
+                rekomendasi: string;}[]} = await getRecommendation(filter) 
+            if(response?.status){
+                setDataFilter([])
+                setDataRekom(response?.data)
+            }
+        }
     }
     return (
         <div className="w-full">
@@ -134,8 +151,8 @@ const Table: FC<tableProps> = (props) => {
                     )
                 }) : null
             }
-            <ModalForm pathName={false} onClose={()=>setDataFilter([])} title={`Dara Dosen Centroid ${filter}`} visible={Boolean(dataFilter?.length)}>
-                <div className="w-full grid grid-cols-2 gap-2">
+            <ModalForm pathName={false} onClose={()=>setDataFilter([])} title={`Data Dosen Centroid ${filter}`} visible={Boolean(dataFilter?.length)}>
+                <div className="w-full grid grid-cols-5 gap-2">
                     {
                         dataFilter && dataFilter.length > 0 && 
                         dataFilter.map((v)=> (
@@ -143,6 +160,37 @@ const Table: FC<tableProps> = (props) => {
                         ))
                     }
                 </div>
+                <div className="w-full">
+                    <Button onClick={()=>showRecommendation(filter)} variant="success">Lihat Rekomendasi</Button>
+                </div>
+            </ModalForm>
+            <ModalForm pathName={false} onClose={()=>setDataRekom([])} title={`Rekomendasi ${filter}`} visible={Boolean(dataRekom?.length)}>
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th className="px-6 py-3">Variabel</th>
+                            <th className="px-6 py-3">Label</th>
+                            <th className="px-6 py-3">Rekomendasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            dataRekom.length>0 && dataRekom?.map(v=>(
+                                <tr>
+                                    <td className="px-6 py-3">
+                                        {v.label}
+                                    </td>
+                                    <td className="px-6 py-3">
+                                        {v.variabel}
+                                    </td>
+                                    <td className="px-6 py-3">
+                                        {v.rekomendasi}
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </ModalForm>
             
         </div>

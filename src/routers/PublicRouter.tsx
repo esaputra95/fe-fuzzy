@@ -9,6 +9,10 @@ const PublicRouters = [
         element: <PublicLayout />,
         children: [
             {
+                path:'questionnaire',
+                element: <FormQuestionnaire />
+            },
+            {
                 path: '/register',
                 element: <RegisterStudents />
             },
