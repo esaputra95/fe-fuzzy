@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from '../../../components/input';
 import Skeleton from '../../../components/ui/Skeleton';
 import useAccess from '../../../utils/useAccess';
+import Select from 'react-select'
 
 ChartJS.register(
     CategoryScale,
@@ -98,13 +99,16 @@ const HomePage = () => {
         filterKm,
         setFilterKm,
         handleFilterKm,
-        loadingKm
+        loadingKm,
+        programStudy,
+        name
     } = useDashboard();
     
     useEffect(() => {
         const chart = chartRef.current;
 
         if (!chart) return;
+        console.log({kmeans});
         
         setChartData({...kmeans});
     }, [kmeans]);
@@ -293,10 +297,54 @@ const HomePage = () => {
                                 }
                             </select>
                         </div>
+                        <div className='w-full'>
+                            <label
+                                htmlFor="countries"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                Program Studi
+                            </label>
+                            {/* <select
+                                value={filterKm.programStudy}
+                                onChange={(e)=>setFilterKm({...filterKm, 'programStudy': e.target.value})}
+                                id="programStudy"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            > */}
+                                <Select onChange={(e)=>setFilterKm({...filterKm, 'programStudy': e?.value as string})} options={programStudy} />
+                                
+                                {/* {
+                                    programStudy?.map((value)=>(
+                                        <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                    ))
+                                } */}
+                            {/* </select> */}
+                        </div>
+                        <div className='w-full'>
+                            <label
+                                htmlFor="countries"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                Code
+                            </label>
+                            {/* <select
+                                value={filterKm.programStudy}
+                                onChange={(e)=>setFilterKm({...filterKm, 'programStudy': e.target.value})}
+                                id="programStudy"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            > */}
+                                <Select options={name} />
+                                
+                                {/* {
+                                    programStudy?.map((value)=>(
+                                        <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
+                                    ))
+                                } */}
+                            {/* </select> */}
+                        </div>
                         <div className='flex items-end'>
                             <Button
                                 variant='primary'
-                                onClick={()=>handleFilterKm(filterKm.university, filterKm.gender, filterKm.faculty)}
+                                onClick={()=>handleFilterKm(filterKm.university, filterKm.gender, filterKm.faculty, filterKm.programStudy, filterKm.code)}
                             >
                                 Filter
                             </Button>
@@ -310,13 +358,11 @@ const HomePage = () => {
                 </div>
             </div>): (
                 <div className='h-full w-full flex items-center justify-center text-center'>
-<label className='text-lg font-bold'>Selamat Datang</label>
-                </div>
-            )
-}
-</>
-        
-        
+                    <label className='text-lg font-bold'>Selamat Datang</label>
+                    </div>
+                )
+            }
+        </>        
     );
 }
 

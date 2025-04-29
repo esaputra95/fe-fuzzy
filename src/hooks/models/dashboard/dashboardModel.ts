@@ -31,12 +31,12 @@ const getTotalPerformance = async (univ?:string, gender?:string, faculty?:string
     }
 }
 
-const getKmeans = async (univ?:string, gender?:string, faculty?:string) => {
+const getKmeans = async (univ?:string, gender?:string, faculty?:string, programStudy?:string, code?:string) => {
     try {
         const response = await api.get(`dashboard/kmeans?`+
             `university=${univ}&`+
             `gender=${gender}&`+
-            `faculty=${faculty}`);
+            `faculty=${faculty}&programStudy=${programStudy}&code=${code}`);
         return response.data
     } catch (error) {
         return error as AxiosError

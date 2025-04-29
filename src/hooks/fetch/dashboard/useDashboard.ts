@@ -34,11 +34,13 @@ export const useDashboard = () => {
     const [cluster, setCluster] = useState<ClusterInterface>();
     const [loadingPerformance, setLoadingPerformance] = useState(false)
     const [totalPerformance, setTotalPerformance] = useState<TotalPerformanceInterface[]>();
+    const [programStudy, setProgramStudy] = useState<DataSelectOptionInterface[]>();
     const [university, setUniversity] = useState<DataSelectOptionInterface[]>();
+    const [name, setName] = useState<DataSelectOptionInterface[]>();
     const [gender, setGender] = useState<DataSelectOptionInterface[]>();
     const [faculty, setFaculty] = useState<DataSelectOptionInterface[]>();
-    const [filter, setFilter] = useState({university: '', gender:'', faculty:''})
-    const [filterKm, setFilterKm] = useState({university: '', gender:'', faculty:''})
+    const [filter, setFilter] = useState({university: '', gender:'', faculty:'', programStudy:'', code:''})
+    const [filterKm, setFilterKm] = useState({university: '', gender:'', faculty:'', programStudy:'', code:''})
     const [loadingKm, setLoadingKm] = useState(false)
     const [kmeans, setKmeans] = useState<KmeansInterface>({
         labels:['-'],
@@ -58,7 +60,7 @@ export const useDashboard = () => {
         getDataBobot();
         getDataCluster();
         getPerformance();
-        getDataKmeans(filterKm.university, filterKm.gender, filterKm.faculty);
+        getDataKmeans(filterKm.university, filterKm.gender, filterKm.faculty, filterKm.programStudy, filterKm.code);
         getDataMaster();
     }, [])
 
@@ -75,6 +77,8 @@ export const useDashboard = () => {
             setUniversity(data.data.university)
             setGender(data.data.gender)
             setFaculty(data.data.faculty)
+            setProgramStudy(data?.data?.programStudy)
+            setName(data?.data?.name)
         }
     }
 
@@ -103,9 +107,9 @@ export const useDashboard = () => {
         }
     }
 
-    const getDataKmeans = async (univ:string, gender:string, faculty:string) => {
+    const getDataKmeans = async (univ:string, gender:string, faculty:string, programStudy:string, code:string) => {
         setLoadingKm(true)
-        const data = await getKmeans(univ, gender, faculty);
+        const data = await getKmeans(univ, gender, faculty, programStudy, code);
         if(data.status){
             const kmeansData = data.data
             let labels:string[]=[]
@@ -150,8 +154,8 @@ export const useDashboard = () => {
         }
     }
 
-    const handleFilterKm = async (univ:string, gender:string, faculty:string) => {
-        await getDataKmeans(univ, gender, faculty);
+    const handleFilterKm = async (univ:string, gender:string, faculty:string, programStudy:string, code:string) => {
+        await getDataKmeans(univ, gender, faculty, programStudy, code);
     }
 
     return{
@@ -169,6 +173,9 @@ export const useDashboard = () => {
         filterKm,
         setFilterKm,
         handleFilterKm,
-        loadingKm
+        loadingKm,
+        programStudy,
+        setProgramStudy,
+        name
     }
 }
