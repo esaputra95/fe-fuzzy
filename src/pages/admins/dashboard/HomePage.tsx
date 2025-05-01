@@ -101,7 +101,9 @@ const HomePage = () => {
         handleFilterKm,
         loadingKm,
         programStudy,
-        name
+        name,
+        getMasterFaculty,
+        getMasterProgramStudy
     } = useDashboard();
     
     useEffect(() => {
@@ -283,7 +285,8 @@ const HomePage = () => {
                             >
                                 Fakultas
                             </label>
-                            <select
+                            <Select onFocus={getMasterFaculty} onChange={(e)=>setFilterKm({...filterKm, 'faculty': e?.value as string})} options={faculty} />
+                            {/* <select
                                 value={filterKm.faculty}
                                 onChange={(e)=>setFilterKm({...filterKm, 'faculty': e.target.value})}
                                 id="faculty"
@@ -295,7 +298,7 @@ const HomePage = () => {
                                         <option key={Math.random().toString(4)} value={value.value}>{value.label}</option>
                                     ))
                                 }
-                            </select>
+                            </select> */}
                         </div>
                         <div className='w-full'>
                             <label
@@ -310,7 +313,7 @@ const HomePage = () => {
                                 id="programStudy"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             > */}
-                                <Select onChange={(e)=>setFilterKm({...filterKm, 'programStudy': e?.value as string})} options={programStudy} />
+                                <Select onFocus={getMasterProgramStudy} onChange={(e)=>setFilterKm({...filterKm, 'programStudy': e?.value as string})} options={programStudy} />
                                 
                                 {/* {
                                     programStudy?.map((value)=>(
@@ -324,7 +327,7 @@ const HomePage = () => {
                                 htmlFor="countries"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                                Code
+                                Kode
                             </label>
                             {/* <select
                                 value={filterKm.programStudy}
@@ -332,7 +335,7 @@ const HomePage = () => {
                                 id="programStudy"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             > */}
-                                <Select options={name} />
+                                <Select onChange={(e)=>setFilterKm({...filterKm, 'code': e?.value as string})} options={name} />
                                 
                                 {/* {
                                     programStudy?.map((value)=>(
@@ -350,6 +353,7 @@ const HomePage = () => {
                             </Button>
                         </div>
                     </div>
+                    
                     {
                         !loadingKm ? <Chart ref={chartRef} type='line' data={chartData} /> :
                         <Skeleton cols={4} rows={16} />

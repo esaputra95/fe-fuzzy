@@ -43,13 +43,27 @@ const getKmeans = async (univ?:string, gender?:string, faculty?:string, programS
     }
 }
 
-const getMaster = async () => {
+const getMaster = async ({university, faculty, programStudy}:{university?: string; faculty?: string; programStudy?: string}) => {
     try {
-        const response = await api.get('dashboard/get-master');
+        const response = await api.get(`dashboard/get-master?university=${university}&faculty=${faculty}&programStudty=${programStudy}`);
+        return response.data
+    } catch (error) {
+        return error as AxiosError
+    }
+} 
+
+const getMasterSelect = async ({url, university, faculty, programStudy}:{url:string; university?: string; faculty?: string; programStudy?: string}) => {
+    try {
+        const params = new URLSearchParams();
+        if (university) params.append('university', university);
+        if (faculty) params.append('faculty', faculty);
+        if (programStudy) params.append('programStudy', programStudy);
+        const response =  await api.get(`${url}?${params.toString()}`);
         return response.data
     } catch (error) {
         return error as AxiosError
     }
 }
 
-export { getBobot, getCluster, getTotalPerformance, getKmeans, getMaster }
+
+export { getBobot, getCluster, getTotalPerformance, getKmeans, getMaster, getMasterSelect }

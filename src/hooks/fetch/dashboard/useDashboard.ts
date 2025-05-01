@@ -4,7 +4,8 @@ import {
     getCluster,
     getKmeans,
     getTotalPerformance,
-    getMaster
+    getMaster,
+    getMasterSelect
 } from "../../models/dashboard/dashboardModel"
 import { 
     BobotInterface, 
@@ -42,6 +43,8 @@ export const useDashboard = () => {
     const [filter, setFilter] = useState({university: '', gender:'', faculty:'', programStudy:'', code:''})
     const [filterKm, setFilterKm] = useState({university: '', gender:'', faculty:'', programStudy:'', code:''})
     const [loadingKm, setLoadingKm] = useState(false)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [dataKmean, setDataKmean] = useState<any[]>([])
     const [kmeans, setKmeans] = useState<KmeansInterface>({
         labels:['-'],
         datasets: [
@@ -62,6 +65,8 @@ export const useDashboard = () => {
         getPerformance();
         getDataKmeans(filterKm.university, filterKm.gender, filterKm.faculty, filterKm.programStudy, filterKm.code);
         getDataMaster();
+        getMasterUniversity();
+        getMasterFaculty()
     }, [])
 
     const getDataBobot = async () => {
@@ -71,13 +76,43 @@ export const useDashboard = () => {
         }
     }
 
+    const getMasterUniversity = async () => {
+        const response = await getMasterSelect({
+            url: '/dashboard/university'
+        });
+        if(response.status){
+            setUniversity(response.data)
+        }
+    }
+
+    const getMasterFaculty = async () => {
+        const response = await getMasterSelect({
+            url: '/dashboard/faculty',
+            university: filterKm?.university
+        });
+        if(response.status){
+            setFaculty(response.data)
+        }
+    }
+    const getMasterProgramStudy = async () => {
+        const response = await getMasterSelect({
+            url: '/dashboard/program-study',
+            university: filterKm?.university,
+            faculty: filterKm?.faculty
+        });
+        if(response.status){
+            setProgramStudy(response.data)
+        }
+    }
+
     const getDataMaster = async () => {
-        const data = await getMaster();
+        const data = await getMaster({
+            university: filterKm?.university, 
+            programStudy: filterKm?.programStudy
+        });
         if(data.status){
-            setUniversity(data.data.university)
+            // setUniversity(data.data.university)
             setGender(data.data.gender)
-            setFaculty(data.data.faculty)
-            setProgramStudy(data?.data?.programStudy)
             setName(data?.data?.name)
         }
     }
@@ -112,6 +147,7 @@ export const useDashboard = () => {
         const data = await getKmeans(univ, gender, faculty, programStudy, code);
         if(data.status){
             const kmeansData = data.data
+            setDataKmean(kmeansData)
             let labels:string[]=[]
             let dataSet:{
                 label: string,
@@ -176,6 +212,10 @@ export const useDashboard = () => {
         loadingKm,
         programStudy,
         setProgramStudy,
-        name
+        name,
+        getDataMaster,
+        getMasterFaculty,
+        getMasterProgramStudy,
+        dataKmean
     }
 }

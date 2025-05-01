@@ -62,7 +62,7 @@ export const useKMeans = () => {
     }
 
     const getDataMaster = async () => {
-        const data = await getMaster();
+        const data = await getMaster({});
         if(data.status){
             setUniversity(data.data.university)
         }
