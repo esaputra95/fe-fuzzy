@@ -45,7 +45,11 @@ const getKmeans = async (univ?:string, gender?:string, faculty?:string, programS
 
 const getMaster = async ({university, faculty, programStudy}:{university?: string; faculty?: string; programStudy?: string}) => {
     try {
-        const response = await api.get(`dashboard/get-master?university=${university}&faculty=${faculty}&programStudty=${programStudy}`);
+        const params = new URLSearchParams();
+        if (university) params.append('university', university);
+        if (faculty) params.append('faculty', faculty);
+        if (programStudy) params.append('programStudy', programStudy);
+        const response = await api.get(`dashboard/get-master?${params.toString()}`);
         return response.data
     } catch (error) {
         return error as AxiosError

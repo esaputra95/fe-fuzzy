@@ -19,6 +19,8 @@ import { Button } from '../../../components/input';
 import Skeleton from '../../../components/ui/Skeleton';
 import useAccess from '../../../utils/useAccess';
 import Select from 'react-select'
+import { getRecommendation } from '../../../hooks/models/kmean/kmeanModel';
+import ModalForm from '../../../components/ui/modal/ModalForm';
 
 ChartJS.register(
     CategoryScale,
@@ -81,9 +83,14 @@ export const dataLine = {
 const HomePage = () => {
     const {token} = useAccess()
     const chartRef = useRef<ChartJS>(null);
+    const [dataRekom, setDataRekom]= useState<{label: string;
+        variabel: string;
+        type: 'Rendah' | 'Sedang' | 'Tinggi'; // Jika hanya 3 pilihan, bisa di-restrict
+        rekomendasi: string;}[]>([])
     const [chartData, setChartData] = useState<ChartData<'bar'>>({
         datasets: [],
     });
+    const [recommendationName, setRecommendationName] = useState('')
 
     const {
         bobot,
@@ -103,7 +110,9 @@ const HomePage = () => {
         programStudy,
         name,
         getMasterFaculty,
-        getMasterProgramStudy
+        getMasterProgramStudy,
+        dataKmean,
+        getMasterCode
     } = useDashboard();
     
     useEffect(() => {
@@ -137,6 +146,77 @@ const HomePage = () => {
             },
         ],
     };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const showRecommendation = async (dataKmeans:any) => {
+        // if(filter){
+        if(filterKm.programStudy || filterKm.faculty || filterKm.gender || filterKm.code){
+            const count = [0, 0, 0];
+            const keys = Object.keys(dataKmeans[0]);
+
+            for (const key of keys) {
+                let min = Infinity;
+                let minIndex = -1;
+
+                for (let i = 0; i < dataKmeans.length; i++) {
+                    if (dataKmeans[i][key] < min) {
+                        min = dataKmeans[i][key];
+                        minIndex = i;
+                    }
+                }
+
+                count[minIndex]++;
+            }
+
+            const maxValue = Math.max(...count);
+            const dominantIndex = count.indexOf(maxValue);
+            const response:{status:boolean, data:{label: string;
+                variabel: string;
+                type: 'Rendah' | 'Sedang' | 'Tinggi';
+                rekomendasi: string;}[]} = await getRecommendation(`C${dominantIndex+1}`) 
+                if(response?.status){
+                    setRecommendationName(`C${dominantIndex+1}`)
+                    setDataRekom(response?.data)
+                }
+        }else{
+            if(!filterKm.university || filterKm.university === 'UIN Sultan Syarif Kasim Riau'){
+                const response:{status:boolean, data:{label: string;
+                variabel: string;
+                type: 'Rendah' | 'Sedang' | 'Tinggi';
+                rekomendasi: string;}[]} = await getRecommendation('C3') 
+                if(response?.status){
+                    setRecommendationName('C3')
+                    setDataRekom(response?.data)
+                }
+            }
+            if(filterKm.university === 'UIN Sjech M. Djamil Djambek Bukittinggi' || filterKm.university === 'UIN Mahmud Yunus Batusangkar' || filterKm.university === 'UIN Syarif Hidayahtullah Jakarta'){
+                const response:{status:boolean, data:{label: string;
+                    variabel: string;
+                    type: 'Rendah' | 'Sedang' | 'Tinggi';
+                    rekomendasi: string;}[]} = await getRecommendation('C1') 
+                    if(response?.status){
+                        setRecommendationName('C1')
+                        setDataRekom(response?.data)
+                    }
+            }
+            if(filterKm.university === 'UIN Imam Bonjol Padang'){
+                const response:{status:boolean, data:{label: string;
+                    variabel: string;
+                    type: 'Rendah' | 'Sedang' | 'Tinggi';
+                    rekomendasi: string;}[]} = await getRecommendation('C2') 
+                    if(response?.status){
+                        setRecommendationName('C2')
+                        setDataRekom(response?.data)
+                    }
+            }
+        }
+            
+            // if(response?.status){
+            //     setDataFilter([])
+            //     setDataRekom(response?.data)
+            // }
+        // }
+    }
 
     return (
         <>
@@ -335,7 +415,7 @@ const HomePage = () => {
                                 id="programStudy"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             > */}
-                                <Select onChange={(e)=>setFilterKm({...filterKm, 'code': e?.value as string})} options={name} />
+                                <Select onFocus={getMasterCode} onChange={(e)=>setFilterKm({...filterKm, 'code': e?.value as string})} options={name} />
                                 
                                 {/* {
                                     programStudy?.map((value)=>(
@@ -360,6 +440,37 @@ const HomePage = () => {
                     }
                     
                 </div>
+                <div className='w-full flex justify-center'>
+                    <Button onClick={()=>showRecommendation(dataKmean)}>Lihat Rekomendasi</Button>
+                </div>
+                <ModalForm pathName={false} onClose={()=>setDataRekom([])} title={`Rekomendasi ${recommendationName}`} visible={Boolean(dataRekom?.length)}>
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th className="px-6 py-3">Variabel</th>
+                                <th className="px-6 py-3">Label</th>
+                                <th className="px-6 py-3">Rekomendasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                dataRekom.length>0 && dataRekom?.map(v=>(
+                                    <tr>
+                                        <td className="px-6 py-3">
+                                            {v.label}
+                                        </td>
+                                        <td className="px-6 py-3">
+                                            {v.variabel}
+                                        </td>
+                                        <td className="px-6 py-3">
+                                            {v.rekomendasi}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </ModalForm>
             </div>): (
                 <div className='h-full w-full flex items-center justify-center text-center'>
                     <label className='text-lg font-bold'>Selamat Datang</label>

@@ -105,6 +105,18 @@ export const useDashboard = () => {
         }
     }
 
+    const getMasterCode = async () => {
+        const response = await getMasterSelect({
+            url: '/dashboard/code',
+            university: filterKm?.university,
+            faculty: filterKm?.faculty,
+            programStudy: filterKm.programStudy
+        });
+        if(response.status){
+            setName(response.data)
+        }
+    }
+
     const getDataMaster = async () => {
         const data = await getMaster({
             university: filterKm?.university, 
@@ -113,7 +125,7 @@ export const useDashboard = () => {
         if(data.status){
             // setUniversity(data.data.university)
             setGender(data.data.gender)
-            setName(data?.data?.name)
+            // setName(data?.data?.name)
         }
     }
 
@@ -216,6 +228,7 @@ export const useDashboard = () => {
         getDataMaster,
         getMasterFaculty,
         getMasterProgramStudy,
-        dataKmean
+        dataKmean,
+        getMasterCode
     }
 }
